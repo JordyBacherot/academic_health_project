@@ -1,5 +1,13 @@
 import axios from "axios";
 
+
+// -------------- Post Requests --------------
+
+
+
+// -------------- End Post Requests --------------
+
+// -------------- Get Requests --------------
 // With access_token
 
 // Without access_token
@@ -12,13 +20,22 @@ export async function call_items_people(id: string = "") {
     }
 }
 
-export async function call_items_physiologicalData() {
-    return await call_API("https://health.shrp.dev", "items/physiologicalData");
+export async function call_items_physiologicalData(id: string = "") {
+    if (id !== "") {
+        return call_API("https://health.shrp.dev", `items/physiologicalData?filter[people_id]=${id}`);
+    } else {
+        return call_API("https://health.shrp.dev", "items/physiologicalData");
+    }
 }
 
-export async function call_items_physicalActivities() {
-    return call_API("https://health.shrp.dev", "items/physicalActivities");
+export async function call_items_physicalActivities(id: string = "") {
+    if (id !== "") {
+        return call_API("https://health.shrp.dev", `items/physicalActivities?filter[people_id]=${id}`);
+    } else {
+        return call_API("https://health.shrp.dev", "items/physicalActivities");
+    }
 }
+// -------------- End Get Requests --------------
 
 // Intern function to avoid code duplication
 async function call_API(url: string, endpoint: string) {
