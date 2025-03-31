@@ -23,12 +23,18 @@ export async function post_normal_user(email: string, password: string, first_na
     }
     return await post_API("https://health.shrp.dev", "users", data);
 }
+
+export async function post_auth_user(email: string, password: string) {
+    const data = {
+        "email": email,
+        "password": password
+    }
+    return await post_API("https://health.shrp.dev", "auth/login", data);
+}
+
 // -------------- End Post Requests --------------
 
 // -------------- Get Requests --------------
-// With access_token
-
-// Without access_token
 export async function get_items_people(id: string = "") {
     if (id !== "") {
         return get_API("https://health.shrp.dev", `items/people/${id}`);
@@ -53,14 +59,29 @@ export async function get_items_physicalActivities(id: string = "") {
         return get_API("https://health.shrp.dev", "items/physicalActivities");
     }
 }
+
+// With access_token
+export async function get_psychic_data(access_token: string) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${access_token}`
+        }
+    }
+    return await get_API("https://health.shrp.dev", "items/psychicData", config);
+}
+
 // -------------- End Get Requests --------------
 
 // -------------- Intern function to avoid code duplication --------------
 
-async function get_API(url: string, endpoint: string) {
+async function get_API(url: string, endpoint: string, config: any = {}) {
     let response = null;
     try {
-        response = await axios.get(`${url}/${endpoint}`);
+        if (config) {
+            response = await axios.get(`${url}/${endpoint}`, config);
+        } else {
+            response = await axios.get(`${url}/${endpoint}`);
+        }
     } catch (error) {
         console.error(`Request Error (${endpoint}): ${error}`);
         return ;
@@ -80,5 +101,3 @@ async function post_API(url: string, endpoint: string, data: any) {
 }
 
 // -------------- End Intern function to avoid code duplication --------------
-
-console.log(await post_normal_user("test_normal_user_BGMB@test.fr", "test_mdp", "test_first_name", "test_last_name"));
