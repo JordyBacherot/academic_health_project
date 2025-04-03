@@ -46,7 +46,7 @@ export async function get_items_people(id: string = "") {
 
 export async function get_items_physiologicalData(id: string = "") {
     if (id !== "") {
-        return get_API("https://health.shrp.dev", `items/physiologicalData?filter[people_id]=${id}`);
+        return get_API("https://health.shrp.dev", `items/physiologicalData?filter[people_id]=${id}&sort=date`);
     } else {
         return get_API("https://health.shrp.dev", "items/physiologicalData");
     }
@@ -54,20 +54,24 @@ export async function get_items_physiologicalData(id: string = "") {
 
 export async function get_items_physicalActivities(id: string = "") {
     if (id !== "") {
-        return get_API("https://health.shrp.dev", `items/physicalActivities?filter[people_id]=${id}`);
+        return get_API("https://health.shrp.dev", `items/physicalActivities?filter[people_id]=${id}&sort=date`);
     } else {
         return get_API("https://health.shrp.dev", "items/physicalActivities");
     }
 }
 
 // With access_token
-export async function get_psychic_data(access_token: string) {
+export async function get_psychic_data(access_token: string, id: string = "") {
     const config = {
         headers: {
             Authorization: `Bearer ${access_token}`
         }
     }
-    return await get_API("https://health.shrp.dev", "items/psychicData", config);
+    if (id !== "") {
+        return get_API("https://health.shrp.dev", `items/psychicData?filter[people_id]=${id}&sort=date`, config);
+    } else {
+        return await get_API("https://health.shrp.dev", "items/psychicData", config);
+    }
 }
 
 // -------------- End Get Requests --------------
