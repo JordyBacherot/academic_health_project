@@ -1,5 +1,8 @@
 # Projet Académique : Health
 
+### Jordy Bacherot | Cyprien Grunblatt | Léa Mick | Loghann Beaudot
+
+
 ## Description
 
 A compléter 

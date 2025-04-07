@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const directusURL = import.meta.env.VITE_DIRECTUS_URL
+
 // -------------- Post Requests --------------
 
 export async function post_admin_user(email: string, password: string, first_name: string, last_name: string) {
@@ -10,7 +12,7 @@ export async function post_admin_user(email: string, password: string, first_nam
         "first_name": first_name,
         "last_name": last_name
     }
-    return await post_API("https://health.shrp.dev", "users", data);
+    return await post_API(directusURL, "users", data);
 }
 
 export async function post_normal_user(email: string, password: string, first_name: string, last_name: string) {
@@ -21,7 +23,7 @@ export async function post_normal_user(email: string, password: string, first_na
         "first_name": first_name,
         "last_name": last_name
     }
-    return await post_API("https://health.shrp.dev", "users", data);
+    return await post_API(directusURL, "users", data);
 }
 
 export async function post_auth_user(email: string, password: string) {
@@ -29,7 +31,7 @@ export async function post_auth_user(email: string, password: string) {
         "email": email,
         "password": password
     }
-    return await post_API("https://health.shrp.dev", "auth/login", data);
+    return await post_API(directusURL, "auth/login", data);
 }
 
 // -------------- End Post Requests --------------
@@ -37,26 +39,26 @@ export async function post_auth_user(email: string, password: string) {
 // -------------- Get Requests --------------
 export async function get_items_people(id: string = "") {
     if (id !== "") {
-        return get_API("https://health.shrp.dev", `items/people/${id}`);
+        return get_API(directusURL, `items/people/${id}`);
     }
     else {
-        return get_API("https://health.shrp.dev", "items/people");
+        return get_API(directusURL, "items/people");
     }
 }
 
 export async function get_items_physiologicalData(id: string = "") {
     if (id !== "") {
-        return get_API("https://health.shrp.dev", `items/physiologicalData?filter[people_id]=${id}&sort=date`);
+        return get_API(directusURL, `items/physiologicalData?filter[people_id]=${id}&sort=date`);
     } else {
-        return get_API("https://health.shrp.dev", "items/physiologicalData");
+        return get_API(directusURL, "items/physiologicalData");
     }
 }
 
 export async function get_items_physicalActivities(id: string = "") {
     if (id !== "") {
-        return get_API("https://health.shrp.dev", `items/physicalActivities?filter[people_id]=${id}&sort=date`);
+        return get_API(directusURL, `items/physicalActivities?filter[people_id]=${id}&sort=date`);
     } else {
-        return get_API("https://health.shrp.dev", "items/physicalActivities");
+        return get_API(directusURL, "items/physicalActivities");
     }
 }
 
@@ -68,9 +70,9 @@ export async function get_psychic_data(access_token: string, id: string = "") {
         }
     }
     if (id !== "") {
-        return get_API("https://health.shrp.dev", `items/psychicData?filter[people_id]=${id}&sort=date`, config);
+        return get_API(directusURL, `items/psychicData?filter[people_id]=${id}&sort=date`, config);
     } else {
-        return await get_API("https://health.shrp.dev", "items/psychicData", config);
+        return await get_API(directusURL, "items/psychicData", config);
     }
 }
 
