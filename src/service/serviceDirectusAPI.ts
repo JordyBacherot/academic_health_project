@@ -31,7 +31,21 @@ export async function post_auth_user(email: string, password: string) {
         "email": email,
         "password": password
     }
-    return await post_API(directusURL, "auth/login", data);
+    const response = await post_API(directusURL, "auth/login", data);
+    localStorage.setItem("access_token", response.data.access_token);
+    localStorage.setItem("refresh_token", response.data.refresh_token);
+    return await response;
+}
+
+export async function post_refresh_token(refresh_token: string) {
+    const data = {
+        "refresh_token": refresh_token,
+        "mode": "json"
+    }
+    const response = await post_API(directusURL, "auth/refresh", data);
+    localStorage.setItem("access_token", response.data.access_token);
+    localStorage.setItem("refresh_token", response.data.refresh_token);
+    return await response;
 }
 
 // -------------- End Post Requests --------------
@@ -107,3 +121,5 @@ async function post_API(url: string, endpoint: string, data: any) {
 }
 
 // -------------- End Intern function to avoid code duplication --------------
+
+console.log(await post_refresh_token("wleyjkHrAgy5oG37_m4u6DDYHUGcnstGsdlZYl6maXW3JMxVuV5TIB0Hm2yoIzRx"))
