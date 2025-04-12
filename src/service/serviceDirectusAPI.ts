@@ -37,7 +37,12 @@ export async function post_auth_user(email: string, password: string) {
     return await response;
 }
 
-export async function post_refresh_token(refresh_token: string) {
+export async function post_refresh_token() {
+    const refresh_token = localStorage.getItem("refresh_token");
+    if (refresh_token === null) {
+        console.error("No refresh token found");
+        return "No refresh token found, authentificate first";
+    }
     const data = {
         "refresh_token": refresh_token,
         "mode": "json"
@@ -77,14 +82,19 @@ export async function get_items_physicalActivities(id: string = "") {
 }
 
 // With access_token
-export async function get_psychic_data(access_token: string, id: string = "") {
+export async function get_psychic_data(user_id: string = "") {
+    const access_token = localStorage.getItem("access_token");
+    if (access_token === null) {
+        console.error("No access token found");
+        return "No access token found, authentificate or use refresh token to have access token first";
+    }
     const config = {
         headers: {
             Authorization: `Bearer ${access_token}`
         }
     }
-    if (id !== "") {
-        return get_API(directusURL, `items/psychicData?filter[people_id]=${id}&sort=date`, config);
+    if (user_id !== "") {
+        return get_API(directusURL, `items/psychicData?filter[people_id]=${user_id}&sort=date`, config);
     } else {
         return await get_API(directusURL, "items/psychicData", config);
     }
@@ -121,5 +131,3 @@ async function post_API(url: string, endpoint: string, data: any) {
 }
 
 // -------------- End Intern function to avoid code duplication --------------
-
-console.log(await post_refresh_token("wleyjkHrAgy5oG37_m4u6DDYHUGcnstGsdlZYl6maXW3JMxVuV5TIB0Hm2yoIzRx"))
