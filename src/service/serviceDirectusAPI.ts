@@ -39,15 +39,12 @@ export async function post_auth_user(email: string, password: string) {
 
 export async function post_refresh_token() {
     const refresh_token = localStorage.getItem("refresh_token");
-    if (refresh_token === null) {
-        console.error("No refresh token found");
-        return "No refresh token found, authentificate first";
-    }
     const data = {
         "refresh_token": refresh_token,
         "mode": "json"
     }
     const response = await post_API(directusURL, "auth/refresh", data);
+    console.log(response);
     localStorage.setItem("access_token", response.data.access_token);
     localStorage.setItem("refresh_token", response.data.refresh_token);
     return await response;
