@@ -1,1 +1,78 @@
 @import "tailwindcss";
+
+:root{
+  --lavender-web: #E5E3F1ff;
+  --pink-lavender: #E8BEEFff;
+  --magnolia: #F0E9EEff;
+  --non-photo-blue: #B7E7F2ff;
+  --periwinkle: #B6B5EEff;
+  --color-white: #FFFFFF7F ;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--lavender-web) var(--pink-lavender);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--lavender-web);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pink-lavender);
+}
+
+.svgBackground{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: auto;
+}
+
+@keyframes circleAnimationOdd {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  51% {
+    transform: rotate(240deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circleAnimationEven {
+  0% {
+    transform: rotate(240deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  99% {
+    transform: rotate(450deg);
+  }
+  100% {
+    transform: rotate(540deg);
+  }
+}
+
+.App{
+/*  glassmorphism effect*/
+  position: relative;
+  padding: 5%;
+  margin: 5%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid var(--color-white);
+  box-shadow: 0 4px 30px var(--lavender-web);
+/*  add noise */
+}
