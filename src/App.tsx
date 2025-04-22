@@ -7,6 +7,7 @@ import {signIn_Supabase} from "./service/serviceSupabaseAPI.ts";
 function App() {
 
     // Connexion automatique à l'API Directus et Supabase le temps du développement de l'application
+    // Todo : Delete function
     useEffect(() => {
         async function asyncfunction() {
             await post_auth_user(import.meta.env.VITE_ADMIN_TEST_EMAIL, import.meta.env.VITE_ADMIN_TEST_PASSWORD);
