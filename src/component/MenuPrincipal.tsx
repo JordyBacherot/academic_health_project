@@ -38,3 +38,5 @@ function MenuPrincipal(){
 }
 
 export default MenuPrincipal;
+
+//TODO : "Login" should change to "Logout" when connected to allow the user to log out + gives name of who is connected

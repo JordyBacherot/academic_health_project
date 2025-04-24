@@ -27,4 +27,8 @@ function App() {
     )
 }
 
+//QUESTION : Should we do a special pages for the chatbot ?
+
+//TODO : adding css to make this pretty <3
+
 export default App
