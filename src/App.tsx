@@ -3,6 +3,7 @@ import Globalchat from "./component/Globalchat.tsx";
 import {useEffect} from "react";
 import {post_auth_user} from "./service/serviceDirectusAPI.ts";
 import {signIn_Supabase} from "./service/serviceSupabaseAPI.ts";
+import MenuPrincipal from "./component/MenuPrincipal.tsx";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
     return (
         <>
             <Contexts>
+                <MenuPrincipal/>
                 <Globalchat></Globalchat>
             </Contexts>
         </>
