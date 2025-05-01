@@ -23,7 +23,6 @@ function App() {
             <div className="App">
                 <Contexts>
                     <MenuPrincipal/>
-                    <Globalchat></Globalchat>
                 </Contexts>
             </div>
             <Background/>
