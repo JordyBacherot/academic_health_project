@@ -1,5 +1,4 @@
 import Contexts from "./contexts/Contexts.tsx";
-import Globalchat from "./component/Globalchat.tsx";
 import {useEffect} from "react";
 import {post_auth_user} from "./service/serviceDirectusAPI.ts";
 import {signIn_Supabase} from "./service/serviceSupabaseAPI.ts";
@@ -21,7 +20,6 @@ function App() {
         <>
             <Contexts>
                 <MenuPrincipal/>
-                <Globalchat></Globalchat>
             </Contexts>
         </>
     )

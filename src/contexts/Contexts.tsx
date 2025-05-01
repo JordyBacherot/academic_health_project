@@ -14,25 +14,22 @@ export default function ContextProvider({ children }: ContextProviderProps) {
 
 
     useEffect(() => {
-        // This function checks if the user is connected to Supabase and Directus API
-        // and the strange structure permits to avoid error with mutliple render of useEffect
+        // This function checks if the user is already connected to Supabase and Directus API
         async function checkUserConnection(){
             const hasRefreshToken = localStorage.getItem("refresh_token");
             const hasAccessToken = localStorage.getItem("access_token");
             // Check if the user is connected to Supabase
             const user_connected_supabase = await get_is_user_connected();
-
-            if (!hasRefreshToken || !hasAccessToken || !user_connected_supabase) {
+            if (hasRefreshToken && hasAccessToken && user_connected_supabase) {
                 // Check if the user is connected to Directus API
                 // and set the access token and refresh token in local storage
                 const test_data_directusAPI = await post_refresh_token();
-                setIsUserConnected(test_data_directusAPI);
+                setIsUserConnected(!!test_data_directusAPI);
             } else {
-                // Optionnel : vérifier si les tokens sont encore valides
-                setIsUserConnected(true); // ou false selon ta logique
+                setIsUserConnected(false);
             }
         }
-        checkUserConnection();
+        checkUserConnection()
     }, []);
 
     return (

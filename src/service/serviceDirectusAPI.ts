@@ -44,10 +44,13 @@ export async function post_refresh_token() {
         "mode": "json"
     }
     const response = await post_API(directusURL, "auth/refresh", data);
-    console.log(response);
+    if (response === undefined) {
+        console.log("Refresh token expired, authentification impossible");
+        return;
+    }
     localStorage.setItem("access_token", response.data.access_token);
     localStorage.setItem("refresh_token", response.data.refresh_token);
-    return await response;
+    return response;
 }
 
 // -------------- End Post Requests --------------
@@ -110,7 +113,7 @@ async function get_API(url: string, endpoint: string, config: any = {}) {
             response = await axios.get(`${url}/${endpoint}`);
         }
     } catch (error) {
-        console.error(`Request Error (${endpoint}): ${error}`);
+        console.log(`Request Error (${endpoint}): ${error}`);
         return ;
     }
     return response.data
@@ -121,7 +124,7 @@ async function post_API(url: string, endpoint: string, data: any) {
     try {
         response = await axios.post(`${url}/${endpoint}`, data);
     } catch (error) {
-        console.error(`Request Error (${endpoint}): ${error}`);
+        console.log(`Request Error (${endpoint}): ${error}`);
         return ;
     }
     return response.data
