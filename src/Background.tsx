@@ -10,19 +10,19 @@ function Background() {
         console.log(circlesOdd);
         if (circlesOdd) {
             circlesOdd.forEach((circle) => {
-                circle.setAttribute('style', `animation: circleAnimationOdd 30s linear infinite;`);
+                circle.setAttribute('style', `animation: circleAnimationOdd 30s linear infinite; opacity: 0.7;`);
             });
         }
         const circlesEven :NodeListOf<Element> | undefined = svgRef.current?.querySelectorAll('.svgCircleEven');
         console.log(circlesEven);
         if (circlesEven) {
             circlesEven.forEach((circle) => {
-                circle.setAttribute('style', `animation: circleAnimationEven 30s linear infinite;`);
+                circle.setAttribute('style', `animation: circleAnimationEven 30s linear infinite; opacity: 0.7;`)
             });
         }
 
 
-    }); // Tableau de dépendances vide signifie que cet effet ne s'exécute qu'une seule fois au montage
+    });
 
     return (
         <svg className="svgBackground w-full h-full" xmlns="http://www.w3.org/2000/svg" version="1.1"

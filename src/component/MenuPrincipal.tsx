@@ -1,4 +1,5 @@
 import { NavLink, useLocation} from "react-router";
+import Background from "../Background.tsx";
 
 function MiniMenu(){
     return(
