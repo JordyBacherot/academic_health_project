@@ -7,14 +7,12 @@ function Background() {
         if (!svgRoot) return;
 
         const circlesOdd :NodeListOf<Element> | undefined = svgRef.current?.querySelectorAll('.svgCircleOdd');
-        console.log(circlesOdd);
         if (circlesOdd) {
             circlesOdd.forEach((circle) => {
                 circle.setAttribute('style', `animation: circleAnimationOdd 30s linear infinite; opacity: 0.7;`);
             });
         }
         const circlesEven :NodeListOf<Element> | undefined = svgRef.current?.querySelectorAll('.svgCircleEven');
-        console.log(circlesEven);
         if (circlesEven) {
             circlesEven.forEach((circle) => {
                 circle.setAttribute('style', `animation: circleAnimationEven 30s linear infinite; opacity: 0.7;`)

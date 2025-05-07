@@ -1,10 +1,10 @@
 import Contexts from "./contexts/Contexts.tsx";
-import Globalchat from "./component/Globalchat.tsx";
 import {useEffect} from "react";
 import {post_auth_user} from "./service/serviceDirectusAPI.ts";
 import {signIn_Supabase} from "./service/serviceSupabaseAPI.ts";
 import MenuPrincipal from "./component/MenuPrincipal.tsx";
 import Background from "./Background.tsx";
+import Carrousel from "./component/Carrousel.tsx";
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
                 <Contexts>
                     <MenuPrincipal/>
                 </Contexts>
+                <Carrousel/>
             </div>
             <Background/>
         </>

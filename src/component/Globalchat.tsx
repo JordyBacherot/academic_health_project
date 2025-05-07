@@ -40,18 +40,26 @@ function Globalchat() {
         get_set_Messages();
     }
 
+    // raccourcir le nom de l'utilisateur
+    const shortcutName = (idUser: string): string => {
+        if (idUser.length > 0) {
+            return idUser.slice(0, 5) + "... : ";
+        }
+        return "Utilisateur : ";
+    };
+
     return (
-        <div >
+        <div id="globalchat" className="element">
             <div>
                 {[...messages].reverse().map((msg, index) => (
                     <div key={index}>
-                        <span>{msg.id_user_admin || 'Utilisateur'}: </span>
+                        <span className="id_user">{shortcutName(msg.id_user_admin) || 'Utilisateur'}: </span>
                         <span>{msg.message}</span>
                     </div>
                 ))}
             </div>
 
-            <div>
+            <div className="msg_input">
                 <input
                     type="text"
                     value={newMessage}

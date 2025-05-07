@@ -9,9 +9,18 @@
   --color-white: #FFFFFF7F ;
 }
 
+@font-face {
+  font-family: 'Now';
+  src: url('/fonts/now.regular.otf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   scrollbar-width: auto;
   scrollbar-color: var(--lavender-web) var(--pink-lavender);
+  font-family: 'Now', sans-serif;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -25,6 +34,25 @@
 
 ::-webkit-scrollbar-track {
   background: var(--pink-lavender);
+}
+
+nav{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: var(--periwinkle);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--periwinkle);
 }
 
 .svgBackground{
@@ -64,16 +92,57 @@
   }
 }
 
+
+/*Glassmorphism basic fond */
 .App{
-/*  glassmorphism effect*/
   position: relative;
   padding: 5%;
-  margin: 5%;
+  margin-top:5%;
+  margin-left: auto;
+  margin-right: auto;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   border: 1px solid var(--color-white);
   box-shadow: 0 4px 30px var(--lavender-web);
   z-index: 2;
-/*  add noise */
+  max-width: 90vw;
+  min-height: 95vh;
+}
+
+/*Glassmorphism fond element */
+.element{
+  position: relative;
+  padding: 5%;
+  margin: 5%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid var(--color-white);
+}
+
+.msg_input{
+  display: flex;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.msg_input input{
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--lavender-web);
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 50%;
+  margin-right: 10px;
+}
+
+.msg_input button{
+  background: var(--lavender-web);
+  color: var(--periwinkle);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
 }

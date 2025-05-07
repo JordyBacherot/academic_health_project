@@ -3,8 +3,11 @@ import Background from "../Background.tsx";
 
 function Login() {
     return (
-        <div className="App">
-            <MenuPrincipal/>
+        <div>
+            <Background/>
+            <div className="App">
+                <MenuPrincipal/>
+            </div>
         </div>
     );
 }
