@@ -89,6 +89,37 @@ export async function get_rendezvous(after_today : boolean = false) {
     }
 }
 
+export async function addRendezvous(classic_user_id: string, adresse : string, start_date: string, end_date: string) {
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+
+    if (userError) {
+        console.error('Utilisateur non connecté ou erreur de récupération Supabase :', userError);
+        return null;
+    }
+
+    const userId = userData.user.id;
+
+    const { data, error } = await supabase
+        .from('rendezvous')
+        .insert([
+            {
+                user_id: classic_user_id,
+                adresse: adresse,
+                start_date: start_date,
+                end_date: end_date,
+                user_admin_id: userId
+            }
+        ]);
+
+    if (error) {
+        console.error('Erreur lors de l\'ajout du rendez-vous Supabase :', error);
+        return null;
+    }
+
+    return data;
+
+}
+
 // -------------- Supabase : Manage Globalchat --------------
 
 export async function send_message_globalchat(message: string) {
