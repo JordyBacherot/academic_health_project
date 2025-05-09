@@ -25,3 +25,7 @@ export type Patient = {
     physicalActivities:number[];
     physiologicalData:number[];
 }
+
+export interface MenuPatientProps {
+    id: string | undefined;
+}

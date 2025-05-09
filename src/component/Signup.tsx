@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {signUp_Supabase} from "../service/serviceSupabaseAPI.ts";
-import {post_admin_user} from "../service/serviceDirectusAPI.ts";
+import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 
 
 
@@ -33,7 +33,8 @@ function Signin() {
         }
 
         // Sign up with Directus API
-        const responseDirectus = await post_admin_user(email, password, lastname, firstname);
+        const service = new ServiceDirectusAPI();
+        const responseDirectus = await service.post_admin_user(email, password, lastname, firstname);
         if (responseDirectus) {
             console.log("Connexion réussie avec Directus API");
         }

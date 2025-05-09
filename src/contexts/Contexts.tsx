@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ThemeContext } from  "./ThemeContext";
 import { IsUserConnectedContext } from "./IsUserConnectedContext";
 import { get_is_user_connected } from "../service/serviceSupabaseAPI";
-import {post_refresh_token} from "../service/serviceDirectusAPI.ts";
+import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 import {ContextProviderProps} from "../types.tsx";
 
 export default function ContextProvider({ children }: ContextProviderProps) {
@@ -20,7 +20,8 @@ export default function ContextProvider({ children }: ContextProviderProps) {
             if (hasRefreshToken && hasAccessToken && user_connected_supabase) {
                 // Check if the user is connected to Directus API
                 // and set the access token and refresh token in local storage
-                const test_data_directusAPI = await post_refresh_token();
+                const service = new ServiceDirectusAPI();
+                const test_data_directusAPI = await service.post_refresh_token();
                 setIsUserConnected(!!test_data_directusAPI);
             } else {
                 setIsUserConnected(false);
