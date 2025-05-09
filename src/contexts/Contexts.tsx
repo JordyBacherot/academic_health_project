@@ -1,12 +1,9 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeContext } from  "./ThemeContext";
 import { IsUserConnectedContext } from "./IsUserConnectedContext";
 import { get_is_user_connected } from "../service/serviceSupabaseAPI";
 import {post_refresh_token} from "../service/serviceDirectusAPI.ts";
-
-type ContextProviderProps = {
-    children: ReactNode;
-};
+import {ContextProviderProps} from "../types.tsx";
 
 export default function ContextProvider({ children }: ContextProviderProps) {
     const [theme, setTheme] = useState("light");
