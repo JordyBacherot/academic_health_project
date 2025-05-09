@@ -29,3 +29,7 @@ export type Patient = {
 export interface MenuPatientProps {
     id: string | undefined;
 }
+
+export interface RenderPropsKeywords {
+    keyword: string;
+}

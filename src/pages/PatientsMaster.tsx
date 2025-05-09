@@ -1,7 +1,12 @@
-import MenuPrincipal from "../component/MenuPrincipal.tsx";
+import RenderPatients from "../component/RenderPatients.tsx";
 
 function PatientsMaster() {
-    return (<div><MenuPrincipal/></div>);
+
+    return (
+        <div>
+            <RenderPatients/>
+        </div>
+    );
 }
 
 export default PatientsMaster;

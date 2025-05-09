@@ -1,8 +1,8 @@
-// import { useEffect, useState } from "react";
+import {usePatients} from "../contexts/PatientsContext.ts";
 
 function Carrousel(){
  // todo : recupérer les infos des patients
-
+    const patients = usePatients()
 
     return (
         <div className="carrousel">

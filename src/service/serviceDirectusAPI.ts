@@ -59,12 +59,16 @@ export class ServiceDirectusAPI {
 // -------------- End Post Requests --------------
 
 // -------------- Get Requests --------------
-    async get_items_people():Promise<Patient | Patient[]> {
+    async get_items_people():Promise<Patient[]> {
         return this.get_API<Patient[]>(this.directusURL, "items/people");
     }
 
     async get_patient_by_id(id: string):Promise<Patient> {
         return this.get_API<Patient>(this.directusURL, `items/people/${id}`);
+    }
+
+    async get_patients_by_keyword(keyword:string):Promise<Patient[]> {
+        return this.get_API(this.directusURL, `items/people?filter[lastname]=${keyword}`);
     }
 
     async get_items_physiologicalData(id: string = "") {

@@ -4,7 +4,7 @@ import {ServiceDirectusAPI} from "./service/serviceDirectusAPI.ts";
 import {signIn_Supabase} from "./service/serviceSupabaseAPI.ts";
 import MenuPrincipal from "./component/MenuPrincipal.tsx";
 import Background from "./Background.tsx";
-import Carrousel from "./component/Carrousel.tsx";
+import PatientsMaster from "./pages/PatientsMaster.tsx";
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
                 <Contexts>
                     <MenuPrincipal/>
                 </Contexts>
-                <Carrousel/>
+                <PatientsMaster/>
             </div>
             <Background/>
         </>
