@@ -33,3 +33,7 @@ export interface MenuPatientProps {
 export interface RenderPropsKeywords {
     keyword: string;
 }
+
+export type PatientsProps = {
+    patients: Patient[] | null;
+}

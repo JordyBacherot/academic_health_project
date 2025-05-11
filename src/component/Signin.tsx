@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {useIsUserConnectedContext} from "../contexts/IsUserConnectedContext.tsx";
 import {signIn_Supabase} from "../service/serviceSupabaseAPI.ts";
-import {post_auth_user} from "../service/serviceDirectusAPI.ts";
+import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 
 function Signin() {
     const {isUserConnected, setIsUserConnected} = useIsUserConnectedContext();
@@ -26,7 +26,8 @@ function Signin() {
 
         try {
             // Sign in with Directus API
-            const response = await post_auth_user(email, password);
+            const service = new ServiceDirectusAPI()
+            const response = await service.post_auth_user(email, password);
             if (response) {
                 console.log("Connexion réussie avec Directus API");
             }

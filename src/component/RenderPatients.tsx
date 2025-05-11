@@ -3,7 +3,6 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 import {Patient, RenderPropsKeywords} from "../types.tsx";
 import Carrousel from "./Carrousel.tsx";
-import { PatientsContext } from "../contexts/PatientsContext.ts";
 
 
 function RenderPatients(){
@@ -94,7 +93,7 @@ function RenderPatients(){
     }
 
     return(
-        <PatientsContext.Provider value={patients}>
+        <div className="patient-render">
             <h1 className="Liste des patients">Patients</h1>
             <div className="patient_page">
                 <div>
@@ -109,9 +108,9 @@ function RenderPatients(){
                         </form>
                     </div>
                 </div>
-                <Carrousel/>
+                <Carrousel patients={patients}/>
             </div>
-        </PatientsContext.Provider>
+        </div>
     )
 }
 

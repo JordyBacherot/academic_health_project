@@ -11,7 +11,7 @@ function PatientInfo() {
     }
 
     function give_gender(patient:Patient):string{
-        if(patient.sex==0){
+        if(patient.sex==1){
             return "homme";
         }else{
             return "femme";

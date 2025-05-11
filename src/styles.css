@@ -287,3 +287,8 @@ button:hover, input[type="submit"]:hover{
     margin-left: 2%;
   }
 }
+
+.patient_details {
+  display: flex;
+  z-index: 4;
+}

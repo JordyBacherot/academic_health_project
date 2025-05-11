@@ -5,6 +5,8 @@ import {useEffect, useState} from "react";
 import {Patient} from "../types.tsx";
 import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 import { PatientContext } from "../contexts/PatientContext.ts";
+import Background from "../Background.tsx";
+import Contexts from "../contexts/Contexts.tsx";
 
 function PatientDetails() {
     const { id } = useParams<{ id: string }>();
@@ -37,6 +39,8 @@ function PatientDetails() {
         fetchPatient();
     }, [id]);
 
+    console.log(patient);
+
     if (isLoading) {
         return (
             <>
@@ -56,15 +60,24 @@ function PatientDetails() {
     }
 
     return (
-        <PatientContext.Provider value={patient}>
-            <div className="patient-details">
+        <>
+            <Contexts>
                 <MenuPrincipal/>
-                <div className="patient-name">
-                    <h2>{patient?.firstname} {patient?.lastname}</h2>
+            </Contexts>
+            <div className="App">
+
+                <div className="patient-details">
+                    <PatientContext.Provider value={patient}>
+                        <div className="patient-name">
+                            <h2>{patient?.firstname} {patient?.lastname}</h2>
+                        </div>
+                        <MenuPatient id={id}/>
+                    </PatientContext.Provider>
                 </div>
-                <MenuPatient id={id}/>
             </div>
-        </PatientContext.Provider>
+            <Background/>
+        </>
+
     )
 }
 
