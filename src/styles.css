@@ -6,6 +6,7 @@
   --magnolia: #F0E9EEff;
   --non-photo-blue: #B7E7F2ff;
   --periwinkle: #B6B5EEff;
+  --periwinkle-dark: #656583;
   --color-white: #FFFFFF7F ;
 }
 
@@ -55,6 +56,40 @@ nav a:hover {
   text-decoration-color: var(--periwinkle);
 }
 
+input[type="text"] {
+  padding: 0.5%;
+  border: 1px solid var(--periwinkle);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--periwinkle-dark);
+}
+
+input[type="text"]::placeholder {
+  color: var(--periwinkle-dark);
+  opacity: 0.7;
+}
+
+button, input[type="submit"]{
+  background: var(--lavender-web);
+  color: var(--periwinkle);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover{
+  background: var(--pink-lavender);
+  color: var(--periwinkle-dark);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
 .svgBackground{
   position: fixed;
   top: 0;
@@ -96,8 +131,8 @@ nav a:hover {
 /*Glassmorphism basic fond */
 .App{
   position: relative;
-  padding: 5%;
-  margin-top:5%;
+  padding: 4%;
+  margin-top:2%;
   margin-left: auto;
   margin-right: auto;
   background: rgba(255, 255, 255, 0.3);
@@ -107,7 +142,21 @@ nav a:hover {
   box-shadow: 0 4px 30px var(--lavender-web);
   z-index: 2;
   max-width: 90vw;
-  min-height: 95vh;
+  min-height: 80vh;
+}
+
+#menu-principal{
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  padding: 3%;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 10px 10px 0 0;
+  border: 1px solid var(--color-white);
 }
 
 /*Glassmorphism fond element */
@@ -119,6 +168,17 @@ nav a:hover {
   backdrop-filter: blur(10px);
   border-radius: 10px;
   border: 1px solid var(--color-white);
+}
+
+.detail_page h1{
+  font-size: 2rem;
+  margin-bottom: 2%;
+}
+
+.patient_page{
+  display: flex;
+  flex-direction: column;
+  gap: 5vh
 }
 
 .msg_input{
@@ -137,20 +197,11 @@ nav a:hover {
   margin-right: 10px;
 }
 
-.msg_input button{
-  background: var(--lavender-web);
-  color: var(--periwinkle);
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
 .carrousel{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 5%;
 }
 
 .carrousel_container {
@@ -159,7 +210,7 @@ nav a:hover {
   height: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 20px;
+  gap: 10px;
 }
 
 .carrousel_item {
@@ -191,4 +242,48 @@ nav a:hover {
   padding: 5%;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.patient-search form{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2%;
+}
+
+.patient-search form input[type="text"]{
+  flex: 1;
+  font-size: 1rem;
+  width: 50%;
+}
+
+.patient-search form button, .patient-search form input[type="submit"]{
+  margin-left: 2%;
+}
+
+ /*orientation landscape*/
+@media (orientation: landscape) {
+  #menu-principal{
+    top: 0;
+    padding: 1%;
+    height: 10vh;
+    bottom: auto;
+    border-radius: 0 0 10px 10px;
+  }
+
+  #menu-principal nav {
+    margin-top: 5%;
+  }
+
+  .App{
+    margin-top: 12vh;
+    padding: 3%;
+  }
+  .carrousel_container{
+    overflow-x: hidden;
+  }
+
+  .patient-search form input[type="text"]{
+    margin-left: 2%;
+  }
 }

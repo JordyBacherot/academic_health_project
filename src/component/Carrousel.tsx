@@ -27,7 +27,7 @@ const scrollRight = () => {
                 {patients?.map((patient) => (
                     <div key={patient.id} className="carrousel_item">
                         <img
-                            src={patient.sex === 1 ? "user-masculin.svg" : "user-feminin.svg"}
+                            src={patient.sex === 1 ? "./icons/user-masculin.svg" : "./icons/user-feminin.svg"}
                             alt="Patient Icon"
                         />
                         <p>{patient.firstname} {patient.lastname}</p>

@@ -7,7 +7,8 @@ function MiniMenu(){
                 to="/"
                 className="title-link"
             >
-                <b>NewTech4Health</b>
+                <img src="./icons/home.svg" alt="icon home"/>
+                {/*<b>NewTech4Health</b>*/}
             </NavLink>)
 }
 function MenuPrincipal(){
@@ -31,7 +32,8 @@ function MenuPrincipal(){
                 <NavLink
                     to="/login"
                 >
-                    Login
+                    <img src="./icons/login_small.svg" alt="icon login"/>
+                    {/*Login*/}
                 </NavLink>
             </nav>
         </div>

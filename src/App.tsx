@@ -21,10 +21,11 @@ function App() {
 
     return (
         <>
+            <Contexts>
+                <MenuPrincipal/>
+            </Contexts>
             <div className="App">
-                <Contexts>
-                    <MenuPrincipal/>
-                </Contexts>
+
                 <PatientsMaster/>
             </div>
             <Background/>

@@ -96,16 +96,18 @@ function RenderPatients(){
     return(
         <PatientsContext.Provider value={patients}>
             <h1 className="Liste des patients">Patients</h1>
-            <div>
-                <p className="nombre-patients">{patients?.length} Patients trouvés</p>
-                <div className="patient-search">
-                    <form onSubmit={handleSubmit(OnSubmit)}>
-                        <label>Rechercher un patient par nom de famille</label>
-                        <input {...register("keyword", {required: true})} />
-                        {errors.keyword && (<div><span className="error-msg">Veuillez entrer une valeur</span></div>)}
-                        <input type="submit" />
-                        {isSearched && (<button onClick={handleReset}>Reset</button>)}
-                    </form>
+            <div className="patient_page">
+                <div>
+                    <p className="nombre-patients">{patients?.length} Patients trouvés</p>
+                    <div className="patient-search">
+                        <form onSubmit={handleSubmit(OnSubmit)}>
+                            <label>Rechercher un patient par nom de famille :</label>
+                            <input type="text" {...register("keyword", {required: true})} placeholder="Entrer le nom du patient"/>
+                            {errors.keyword && (<div><span className="error-msg">Veuillez entrer une valeur</span></div>)}
+                            <input type="submit" />
+                            {isSearched && (<button onClick={handleReset}>Reset</button>)}
+                        </form>
+                    </div>
                 </div>
                 <Carrousel/>
             </div>
