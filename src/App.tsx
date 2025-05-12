@@ -25,7 +25,6 @@ function App() {
                 <MenuPrincipal/>
             </Contexts>
             <div className="App">
-
                 <PatientsMaster/>
             </div>
             <Background/>

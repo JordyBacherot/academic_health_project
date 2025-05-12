@@ -4,10 +4,7 @@ import {PatientsProps} from "../types.tsx";
 
 function Carrousel({patients}:PatientsProps){
  // todo : recupérer les infos des patients
-    const carrouselRef = useRef(null);
-    if(patients){
-        console.log(patients[0])
-    }
+    const carrouselRef = useRef<HTMLDivElement>(null);
 
 
 const scrollLeft = () => {
