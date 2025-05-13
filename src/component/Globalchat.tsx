@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import {get_globalchat, send_message_globalchat} from "../service/serviceSupabaseAPI.ts";
-import {useIsUserConnectedContext} from "../contexts/IsUserConnectedContext.tsx";
+import {IsUserConnectedContext} from "../contexts/UserContext.tsx";
 
-function Globalchat() {
-    const { isUserConnected } = useIsUserConnectedContext();
+export default function Globalchat() {
+    const context = useContext(IsUserConnectedContext);
+    if (!context) {
+        throw new Error("SomeComponent must be used within a ContextProvider");
+    }
+    const {isUserConnected } = context;
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
 
-    async function get_set_Messages() {
-        if (!isUserConnected) return;
+    async function get_Messages() {
+        if (isUserConnected == "not connected") {
+            console.error("Utilisateur non connecté");
+        }
 
         const messages = await get_globalchat();
         if (!messages) {
@@ -21,8 +27,8 @@ function Globalchat() {
     }
 
     useEffect(() => {
-        get_set_Messages();
-    }, [isUserConnected]);
+        get_Messages();
+    }, []);
 
     async function handleInputChange(e : any){
         setNewMessage(e.target.value);
@@ -37,43 +43,48 @@ function Globalchat() {
         await send_message_globalchat(newMessage);
 
         setNewMessage('');
-        get_set_Messages();
+        get_Messages();
     }
 
     // raccourcir le nom de l'utilisateur
     const shortcutName = (idUser: string): string => {
         if (idUser.length > 0) {
-            return idUser.slice(0, 5) + "... : ";
+            return idUser.slice(0, 5) + " ... ";
         }
         return "Utilisateur : ";
     };
 
     return (
         <div id="globalchat" className="element">
-            <div>
-                {[...messages].reverse().map((msg, index) => (
-                    <div key={index}>
-                        <span className="id_user">{shortcutName(msg.id_user_admin) || 'Utilisateur'}: </span>
-                        <span>{msg.message}</span>
+            {!isUserConnected || isUserConnected === "not connected" ? (
+                <div className="text-center text-red-600 font-bold">
+                    Vous devez être connecté pour accéder au chat global.
+                </div>
+            ) : (
+                <>
+                    <div>
+                        {[...messages].reverse().map((msg, index) => (
+                            <div key={index}>
+                                <span className="id_user">{shortcutName(msg.id_user_admin) || 'Utilisateur'}: </span>
+                                <span>{msg.message}</span>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
 
-            <div className="msg_input">
-                <input
-                    type="text"
-                    value={newMessage}
-                    onChange={handleInputChange}
-                    placeholder="Écris un message..."
-                />
-                <button
-                    onClick={handleSendMessage}
-                >
-                    Envoyer
-                </button>
-            </div>
+                    <div className="msg_input">
+                        <input
+                            type="text"
+                            value={newMessage}
+                            onChange={handleInputChange}
+                            placeholder="Écris un message..."
+                        />
+                        <button onClick={handleSendMessage}>
+                            Envoyer
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
-}
 
-export default Globalchat;
+}

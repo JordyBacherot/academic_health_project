@@ -1,13 +1,19 @@
-import { useState} from "react";
-import {useIsUserConnectedContext} from "../contexts/IsUserConnectedContext.tsx";
+import {useContext, useState} from "react";
 import {signIn_Supabase} from "../service/serviceSupabaseAPI.ts";
 import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
+import {IsUserConnectedContext} from "../contexts/UserContext.tsx";
 
 function Signin() {
-    const {isUserConnected, setIsUserConnected} = useIsUserConnectedContext();
+    const context = useContext(IsUserConnectedContext);
+
+    if (!context) {
+        throw new Error("SomeComponent must be used within a ContextProvider");
+    }
+
+    const {setIsUserConnected } = context;
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
 
     async function handleInputChangeEmail(e : any){
         setEmail(e.target.value);
@@ -22,12 +28,11 @@ function Signin() {
             console.error("Email et mot de passe sont requis");
             return;
         }
-
+        const serviceDirectus = new ServiceDirectusAPI()
 
         try {
             // Sign in with Directus API
-            const service = new ServiceDirectusAPI()
-            const response = await service.post_auth_user(email, password);
+            const response = await serviceDirectus.post_auth_user(email, password);
             if (response) {
                 console.log("Connexion réussie avec Directus API");
             }
@@ -47,7 +52,9 @@ function Signin() {
             return;
         }
 
-        setIsUserConnected(true);
+        const cutemail = email.split("@")[0];
+        setIsUserConnected(cutemail);
+        localStorage.setItem("name", cutemail);
         console.log("Utilisateur connecté");
     }
 

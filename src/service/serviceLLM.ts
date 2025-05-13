@@ -9,14 +9,15 @@ const model = new ChatGroq({
     apiKey: groq_api_key,
 });
 
-const systemMessage = new SystemMessage(
-    "Tu es un assistant virtuel en coaching sportif et santé. " +
-    "Réponds de manière précise et détaillée, en posant des questions pour mieux comprendre les besoins et objectifs de l'utilisateur."
-);
+const contextMessage =
+    "Tu es un assistant virtuel dédié à l'accompagnement d'un coach sportif et santé. " +
+    "Ton rôle est d'aider le coach à optimiser ses sessions en lui fournissant des conseils, des informations pertinentes et des suggestions adaptées aux besoins de ses clients." +
+    "Pose des questions pour bien comprendre les spécificités des objectifs et des profils des clients, afin d'offrir des recommandations précises et personnalisées."
 
-export async function llm_stream_request(onToken: any, history: BaseMessage[], message: string) {
+export async function llm_stream_request(patientInfo : string ,onToken: any, history: BaseMessage[], message: string) {
     let aiResponse = "";
     const userMessage = new HumanMessage(message);
+    const systemMessage = new SystemMessage(contextMessage + "\n" + patientInfo);
     try {
         const messages: BaseMessage[] = [systemMessage,...history, userMessage];
         const stream = await model.stream(messages);
@@ -24,7 +25,6 @@ export async function llm_stream_request(onToken: any, history: BaseMessage[], m
         for await (const chunk of stream) {
             const token = chunk.content;
             onToken(token);
-            console.log(token);
             aiResponse += token;
         }
     } catch (error) {

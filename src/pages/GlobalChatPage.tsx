@@ -1,19 +1,15 @@
 import MenuPrincipal from "../component/MenuPrincipal.tsx";
 import Background from "../Background.tsx";
-import Signin from "../component/Signin.tsx";
+import Globalchat from "../component/Globalchat.tsx";
 
-function Login() {
+export default function GlobalChatPage() {
     return (
-        <div>
+        <>
+            <MenuPrincipal/>
             <div className="App">
-                <MenuPrincipal/>
-                <Signin></Signin>
+                <Globalchat></Globalchat>
             </div>
             <Background/>
-        </div>
+        </>
     );
 }
-
-export default Login;
-
-// TODO : login page

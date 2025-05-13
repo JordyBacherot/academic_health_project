@@ -74,14 +74,17 @@ input[type="text"]::placeholder {
 }
 
 button, input[type="submit"]{
-  background: var(--lavender-web);
-  color: var(--periwinkle);
+  background: var(--periwinkle);
+  color: var(--lavender-web);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 5px 10px;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centre les contenus horizontalement */
 }
 
 button:hover, input[type="submit"]:hover{

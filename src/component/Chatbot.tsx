@@ -1,12 +1,31 @@
-import { useState } from 'react';
+import {Fragment, useState} from 'react';
 import { llm_stream_request } from  '../service/serviceLLM';
 import { BaseMessage, HumanMessage } from '@langchain/core/messages';
+import {Patient} from "../types.tsx";
 
-function Chatbot() {
+type ChatbotProps = {
+    patient: Patient | null;
+}
+
+function Chatbot( { patient }: ChatbotProps) {
     const [userMessage, setUserMessage] = useState('');
     const [history, setHistory] = useState<BaseMessage[]>([]);
     const [streamResponse, setstreamResponse] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    const generatePatientContext = (patient: Patient | null) => {
+        if (!patient) return '';
+
+        return `
+            Voici les informations du patient :
+            Âge : ${patient.birthyear ? new Date().getFullYear() - patient.birthyear : 'inconnu'}
+            Sexe : ${patient.sex === 1 ? 'homme' : 'femme'}
+            Taille : ${patient.height} cm
+            Poids initial : ${patient.weightStart} kg
+            IMC de départ : ${patient.bmiStart}
+            Objectifs : ${patient.weightGoal} kg, IMC ${patient.bmiGoal}
+        `;
+    };
 
     async function sendMessage(message: string) {
         setUserMessage('');
@@ -22,6 +41,7 @@ function Chatbot() {
         };
 
         const newHistory = await llm_stream_request(
+            generatePatientContext(patient),
             whenNewToken,
             [...history],
             message
@@ -33,28 +53,44 @@ function Chatbot() {
     }
 
     return (
-        <div>
-            <div>
-                {history.map((msg) => (
-                    <div>
-                        {/* Erreur normal ici, tout fonctionne */}
-                        {JSON.stringify(msg.content)}
+        <div className="p-2 mx-auto space-y-2">
+            <div className="space-y-2 max-h-80">
+                {history.map((msg, index) => (
+                    <div
+                        key={index}
+                        className="rounded-lg p-2 text-sm text-gray-800"
+                    >
+                        {(index % 2 === 0 ? 'Votre message : ' : 'Réponse de l’assistant : ')}
+                        {JSON.stringify(msg.content)
+                            .slice(1, -1)
+                            .split('\\n')
+                            .map((line, i) => (
+                                <Fragment key={i}>
+                                    {line}
+                                    <br />
+                                </Fragment>
+                            ))}
                     </div>
                 ))}
-                {isLoading
-                    ? <div>{streamResponse}</div>
-                    : null
-                }
+                {isLoading && (
+                    <div className="italic text-gray-500 text-sm">{streamResponse}</div>
+                )}
             </div>
-            <div>
+            <div className="flex gap-2">
                 <input
                     type="text"
                     value={userMessage}
                     onChange={(e) => setUserMessage(e.target.value)}
-                    placeholder="Poser une question"
+                    placeholder="Votre question"
                     onKeyDown={(e) => e.key === 'Enter' && sendMessage(userMessage)}
+                    className="flex-1 rounded-full px-4 py-2 min-w-20"
                 />
-                <button onClick={() => sendMessage(userMessage)}>Envoyer</button>
+                <button
+                    onClick={() => sendMessage(userMessage)}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+                >
+                    Envoyer
+                </button>
             </div>
         </div>
     );

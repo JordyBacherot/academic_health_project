@@ -6,13 +6,14 @@ import {Patient} from "../types.tsx";
 import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 import { PatientContext } from "../contexts/PatientContext.ts";
 import Background from "../Background.tsx";
-import Contexts from "../contexts/Contexts.tsx";
+import Chatbot from "../component/Chatbot.tsx";
 
 function PatientDetails() {
     const { id } = useParams<{ id: string }>();
     const [patient, setPatient] = useState<Patient | null>(null)
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isChatbotOpen, setIsChatbotOpen] = useState(false); // Modal state
 
     useEffect(() => {
         const service = new ServiceDirectusAPI();
@@ -61,20 +62,44 @@ function PatientDetails() {
 
     return (
         <>
-            <Contexts>
-                <MenuPrincipal/>
-            </Contexts>
-            <div className="App">
-
-                <div className="patient-details">
-                    <PatientContext.Provider value={patient}>
-                        <div className="patient-name">
-                            <h2>{patient?.firstname} {patient?.lastname}</h2>
+            <MenuPrincipal/>
+            <PatientContext.Provider value={patient}>
+                <div className="App">
+                        <div className="patient-details">
+                                <div className="patient-name">
+                                    <h2>{patient?.firstname} {patient?.lastname}</h2>
+                                </div>
+                                <MenuPatient id={id}/>
                         </div>
-                        <MenuPatient id={id}/>
-                    </PatientContext.Provider>
                 </div>
-            </div>
+                <button
+                    onClick={() => setIsChatbotOpen(true)}
+                    className="fixed top-3/4 lg:bottom-4 right-4 z-10 lg:top-160"
+
+                >
+                    Assistant virtuel
+                    <img src="/public/icons/chatbot.svg" alt="Chatbot" className="w-20 h-20"/>
+                </button>
+
+                {/* Modal */}
+                {isChatbotOpen && (
+                    <div className="fixed inset-0 flex justify-center items-center z-20">
+                        <div className="bg-[#ffffff] rounded-2xl shadow-lg p-6 md:w-2/3 w-4/5 max-w-5xl relative">
+                            <div className={ "text-center text-xl font-bold mb-4"}>
+                                HealtBot : Votre assistant virtuel
+                            </div>
+                            <button
+                                onClick={() => setIsChatbotOpen(false)}
+                                className="absolute top-2 right-2 text-xl"
+                            >
+                                {/*Caractère spécial*/}
+                                &times;
+                            </button>
+                            <Chatbot patient={patient} />
+                        </div>
+                    </div>
+                )}
+            </PatientContext.Provider>
             <Background/>
         </>
 

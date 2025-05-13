@@ -10,6 +10,7 @@ function MiniMenu(){
                 {/*<b>NewTech4Health</b>*/}
             </NavLink>)
 }
+
 function MenuPrincipal(){
     const location = useLocation();
 
@@ -28,6 +29,12 @@ function MenuPrincipal(){
         <div id='menu-principal'>
             <nav>
                 <MiniMenu/>
+                <NavLink
+                    to="/globalchat"
+                >
+                    <img src="/icons/connect.svg" alt="icon globalchat"/>
+                    {/*Login*/}
+                </NavLink>
                 <NavLink
                     to="/login"
                 >

@@ -101,7 +101,7 @@ function RenderPatients(){
                     <div className="patient-search">
                         <form onSubmit={handleSubmit(OnSubmit)}>
                             <label>Rechercher un patient par nom de famille :</label>
-                            <input type="text" {...register("keyword", {required: true})} placeholder="Entrer le nom du patient"/>
+                            <input className="min-w-20" type="text" {...register("keyword", {required: true})} placeholder="Entrer le nom du patient"/>
                             {errors.keyword && (<div><span className="error-msg">Veuillez entrer une valeur</span></div>)}
                             <input type="submit" />
                             {isSearched && (<button onClick={handleReset}>Reset</button>)}
