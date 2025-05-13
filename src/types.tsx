@@ -6,10 +6,6 @@ export type ContextProviderProps = {
 
 export type GraphType = "physical" | "psychological" | "physiological";
 
-export type GraphProps = {
-    data:number[];
-}
-
 export type Patient = {
     id: string;
     firstname: string;
@@ -36,4 +32,25 @@ export interface RenderPropsKeywords {
 
 export type PatientsProps = {
     patients: Patient[] | null;
+}
+
+export type GraphProps = {
+    graphType: GraphType;
+}
+
+export type physiological = {
+    id:string;
+    date: Date | null;
+    weight:number;
+    people_id:string;
+}
+
+export type physical = {
+    id: string;
+    type:string;
+    duration:number;
+    numberOfSteps:number;
+    consumedCalories:number;
+    people_id:string;
+    date:Date|null;
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Patient} from "../types.tsx";
+import {Patient, physical, physiological} from "../types.tsx";
 
 export class ServiceDirectusAPI {
 
@@ -71,15 +71,14 @@ export class ServiceDirectusAPI {
         return this.get_API(this.directusURL, `items/people?filter[lastname]=${keyword}`);
     }
 
-    async get_items_physiologicalData(id: string = "") {
+    async get_items_physiologicalData(id: string = ""): Promise<physiological[]> {
         if (id !== "") {
             return this.get_API(this.directusURL, `items/physiologicalData?filter[people_id]=${id}&sort=date`);
         } else {
             return this.get_API(this.directusURL, "items/physiologicalData");
         }
     }
-
-    async get_items_physicalActivities(id: string = "") {
+    async get_items_physicalActivities(id: string = ""):Promise<physical[]> {
         if (id !== "") {
             return this.get_API(this.directusURL, `items/physicalActivities?filter[people_id]=${id}&sort=date`);
         } else {
