@@ -3,6 +3,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 import {Patient, RenderPropsKeywords} from "../types.tsx";
 import Carrousel from "./Carrousel.tsx";
+import SchedulerComponent from "./SchedulerComponent.tsx";
 
 
 function RenderPatients(){
@@ -109,6 +110,7 @@ function RenderPatients(){
                     </div>
                 </div>
                 <Carrousel patients={patients}/>
+                <SchedulerComponent></SchedulerComponent>
             </div>
         </div>
     )

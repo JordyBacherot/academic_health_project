@@ -257,7 +257,7 @@ button:hover, input[type="submit"]:hover{
 .patient-search form input[type="text"]{
   flex: 1;
   font-size: 1rem;
-  width: 50%;
+  min-width: 40%;
 }
 
 .patient-search form button, .patient-search form input[type="submit"]{

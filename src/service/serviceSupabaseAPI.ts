@@ -67,6 +67,11 @@ export async function get_rendezvous(after_today : boolean = false) {
         return null;
     }
 
+    if (!userData) {
+        console.error('Utilisateur non authentifié');
+        return null;
+    }
+
     if (after_today) {
         const { data, error } = await supabase
             .from('rendezvous')
@@ -154,6 +159,11 @@ export async function get_globalchat() {
 
     if (userError) {
         console.error('Utilisateur non connecté ou erreur de récupération Supabase :', userError);
+        return null;
+    }
+
+    if (!userData) {
+        console.error('Utilisateur non authentifié');
         return null;
     }
 
