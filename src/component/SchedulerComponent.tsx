@@ -1,11 +1,13 @@
-import {Calendar, momentLocalizer, Event, dayjsLocalizer} from 'react-big-calendar';
-import moment from 'moment';
+import {Calendar, Event, dayjsLocalizer} from 'react-big-calendar';
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import {useState, useEffect} from 'react';
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "/src/component/calendarStyle.css";
 import {get_rendezvous} from "../service/serviceSupabaseAPI.ts";
 import dayjs from 'dayjs'
+import 'dayjs/locale/fr'
+
+dayjs.locale('fr')
 
 const localizer = dayjsLocalizer(dayjs)
 
@@ -16,13 +18,20 @@ interface CalendarEvent extends Event {
   end: Date;
 }
 
+interface RendezVous {
+  id: number;
+  start_date: string;
+  end_date: string;
+  user_id: number;
+}
+
 const lang = {
     week: 'Semaine',
     work_week: 'Semaine de travail',
     day: 'Jour',
     month: 'Mois',
-    previous: '<<',
-    next: '>>',
+    previous: '◀',
+    next: '▶',
     today: `Aujourd'hui`,
     agenda: 'Agenda',
     showMore: (total :number) => `+${total} plus`,
@@ -35,8 +44,8 @@ function SchedulerComponent() {
 
     const [events, setEvents] = useState<CalendarEvent[]>([
         {
-            start: moment().toDate(),
-            end: moment().add(1, "days").toDate(),
+            start: dayjs().toDate(),
+            end: dayjs().add(1, "day").toDate(),
             title: "Rendez-vous",
         },
     ]);
@@ -46,7 +55,7 @@ function SchedulerComponent() {
             const dataRdv = await get_rendezvous();
             if (dataRdv) {
                 console.log(dataRdv);
-                const formattedEvents = dataRdv.map((rdv: any) => ({
+                const formattedEvents = dataRdv.map((rdv: RendezVous) => ({
                     start: new Date(rdv.start_date),
                     end: new Date(rdv.end_date),
                     title: "Rendez vous de : " + rdv.user_id || "Rendez-vous",
@@ -61,13 +70,14 @@ function SchedulerComponent() {
     return (
         <div className="scheduler element">
             <DnDCalendar
-                defaultDate={moment().toDate()}
-                defaultView="month"
+                defaultDate={dayjs().toDate()}
+                defaultView="day"
                 events={events}
                 localizer={localizer}
                 resizable
                 style={{ height: "80vh", margin: "20px" }}
                 messages = {lang}
+                culture="fr"
             />
         </div>
     );
