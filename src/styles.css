@@ -56,19 +56,19 @@ nav a:hover {
   text-decoration-color: var(--periwinkle);
 }
 
-input[type="text"] {
-  padding: 0.5%;
+input[type="text"], input[type="password"], input[type="email"] {
+  padding: 1%;
   border: 1px solid var(--periwinkle);
   border-radius: 5px;
   font-size: 1rem;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
   outline: none;
   border-color: var(--periwinkle-dark);
 }
 
-input[type="text"]::placeholder {
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder {
   color: var(--periwinkle-dark);
   opacity: 0.7;
 }
@@ -291,7 +291,7 @@ button:hover, input[type="submit"]:hover{
 
  /*orientation landscape*/
 @media (orientation: landscape) {
-  #menu-principal{
+  #menu-principal, #mini-menu{
     top: 0;
     padding: 1%;
     height: 10vh;
@@ -299,7 +299,7 @@ button:hover, input[type="submit"]:hover{
     border-radius: 0 0 10px 10px;
   }
 
-  #menu-principal nav {
+  #menu-principal nav, #mini-menu nav {
     margin-top: 5%;
   }
 
