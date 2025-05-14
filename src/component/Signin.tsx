@@ -115,7 +115,7 @@ function Signin() {
                     <p>Pas encore de compte ?</p>
                     <button
                         type="button"
-                        onClick={() => window.location.href = "/signup"}
+                        onClick={() => navigate("/create_account")}
                         className="form_button w-full mt-2"
                     >
                         Inscrivez-vous !
