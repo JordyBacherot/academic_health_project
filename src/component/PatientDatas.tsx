@@ -33,7 +33,7 @@ function PatientDatas({graphType}:GraphProps) {
     );
 
     const patient = usePatient();
-    const [datas, setDatas] = useState<physical[]|physiological[]|unknown>([]);
+    const [datas, setDatas] = useState<physical[] | physiological[]>([]);
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -55,7 +55,7 @@ function PatientDatas({graphType}:GraphProps) {
                             break;
                         case "psychological":
                         { const response = await service.get_psychic_data(patient.id);
-                            setDatas(response)}
+                            setDatas(response as physical[] | physiological[])}
                             break;
                         default:
                         { setError(Error("Invalid graph type"));}
@@ -98,7 +98,7 @@ function PatientDatas({graphType}:GraphProps) {
 
     if (graphType == "physiological"){
         const chartData = {
-            labels: datas.map(d => format(new Date(d.date), "dd/MM/yyyy")),
+            labels: datas.map(d => format(new Date(d.date ?? ""), "dd/MM/yyyy")),
             datasets: [
                 {
                     label: 'Poids (kg)',

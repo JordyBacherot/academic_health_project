@@ -104,7 +104,7 @@ function RenderPatients(){
                             <input className="min-w-20" type="text" {...register("keyword", {required: true})} placeholder="Entrer le nom du patient"/>
                             {errors.keyword && (<div><span className="error-msg">Veuillez entrer une valeur</span></div>)}
                             <input type="submit" />
-                            {isSearched && (<button onClick={handleReset}>Reset</button>)}
+                            {isSearched && (<button onClick={handleReset} className="form_button">Reset</button>)}
                         </form>
                     </div>
                 </div>
