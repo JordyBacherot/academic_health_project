@@ -71,9 +71,8 @@ function RenderPatients(){
                     setIsLoading(false);
                 }
         };
-
         fetchPatient();
-    });
+    }, []);
 
     if (isLoading) {
         return (

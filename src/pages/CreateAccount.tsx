@@ -5,8 +5,8 @@ import Signup from "../component/Signup.tsx";
 export default function CreateAccount() {
     return (
         <div>
+            <MenuPrincipal/>
             <div className="App">
-                <MenuPrincipal/>
                 <Signup></Signup>
             </div>
             <Background/>
