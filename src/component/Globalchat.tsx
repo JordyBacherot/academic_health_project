@@ -77,6 +77,11 @@ export default function Globalchat() {
                             value={newMessage}
                             onChange={handleInputChange}
                             placeholder="Écris un message..."
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSendMessage();
+                                }
+                            }}
                         />
                         <button className="form_button" onClick={handleSendMessage}>
                             Envoyer

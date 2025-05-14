@@ -63,7 +63,6 @@ function RenderPatients(){
                 setIsLoading(false);
             }
         };
-
         fetchPatient();
     }, []); // Ajout de la dépendance vide pour n'exécuter qu'une seule fois
 

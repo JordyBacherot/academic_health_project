@@ -40,8 +40,6 @@ function PatientDetails() {
         fetchPatient();
     }, [id]);
 
-    console.log(patient);
-
     if (isLoading) {
         return (
             <>
@@ -106,12 +104,10 @@ function PatientDetails() {
 
 export default PatientDetails;
 
-//TODO : global presentation (picture + name)
+//TODO : global presentation (picture to add)
 
-//TODO : menu for accessing basic infos, psychological, physical, physiological datas
+//TODO : css menu for accessing basic infos, psychological, physical, physiological datas
 
-//TODO : graphs for physio, psycho, physical datas
+//TODO : reponsive charts
 
-//TODO : chatbot at the end of the page, for special training according to patients data
 
-//TODO: This page should not be accessed if not connected to pro account

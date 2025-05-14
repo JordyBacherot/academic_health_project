@@ -3,7 +3,6 @@ import {NavLink} from "react-router";
 import {PatientsProps} from "../types.tsx";
 
 function Carrousel({patients}:PatientsProps){
- // todo : recupérer les infos des patients
     const carrouselRef = useRef<HTMLDivElement>(null);
     const validPatients = patients?.filter(patient => patient.lastname != null && patient.firstname != null)
 
