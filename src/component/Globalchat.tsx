@@ -78,7 +78,7 @@ export default function Globalchat() {
                             onChange={handleInputChange}
                             placeholder="Écris un message..."
                         />
-                        <button onClick={handleSendMessage}>
+                        <button className="form_button" onClick={handleSendMessage}>
                             Envoyer
                         </button>
                     </div>

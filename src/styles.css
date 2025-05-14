@@ -57,7 +57,7 @@ nav a:hover {
 }
 
 input[type="text"], input[type="password"], input[type="email"] {
-  padding: 1%;
+  padding: 0.5rem;
   border: 1px solid var(--periwinkle);
   border-radius: 5px;
   font-size: 1rem;
@@ -78,7 +78,7 @@ button, input[type="submit"]{
   background: var(--periwinkle);
   color: var(--lavender-web);
   border: none;
-  padding: 5px 10px;
+  padding: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
@@ -282,7 +282,7 @@ button:hover, input[type="submit"]:hover{
 .patient-search form input[type="text"]{
   flex: 1;
   font-size: 1rem;
-  min-width: 40%;
+  min-width: 50%;
 }
 
 .patient-search form button, .patient-search form input[type="submit"]{
