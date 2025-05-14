@@ -31,7 +31,7 @@ export interface RenderPropsKeywords {
 }
 
 export type PatientsProps = {
-    patients: Patient[] | null;
+    patients: Patient[] | null | undefined;
 }
 
 export type GraphProps = {

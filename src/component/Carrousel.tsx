@@ -5,6 +5,7 @@ import {PatientsProps} from "../types.tsx";
 function Carrousel({patients}:PatientsProps){
  // todo : recupérer les infos des patients
     const carrouselRef = useRef<HTMLDivElement>(null);
+    const validPatients = patients?.filter(patient => patient.lastname != null && patient.firstname != null)
 
 
 const scrollLeft = () => {
@@ -21,24 +22,27 @@ const scrollRight = () => {
     }
 };
     return (
-        <div className="carrousel">
-            <button className="button_left_carrou form_button" onClick={scrollLeft}>◀</button>
-            <div className="carrousel_container" ref={carrouselRef}>
-                {patients?.map((patient) => (
-                    <div key={patient.id} className="carrousel_item">
-                        <NavLink to={`/patients/${patient.id}`}>
-                            <img
-                                src={patient.sex === 1 ? "./icons/user-masculin.svg" : "./icons/user-feminin.svg"}
-                                alt="Patient Icon"
-                            />
-                            <p>{patient.firstname} {patient.lastname}</p>
-                        </NavLink>
+        <div>
+            <p className="count-patient">Nombre de patients : {validPatients?.length}</p>
+            <div className="carrousel">
+                <button className="button_left_carrou form_button" onClick={scrollLeft}>◀</button>
+                <div className="carrousel_container" ref={carrouselRef}>
+                    {validPatients?.map((patient) => (
+                        <div key={patient.id} className="carrousel_item">
+                            <NavLink to={`/patients/${patient.id}`}>
+                                <img
+                                    src={patient.sex === 1 ? "./icons/user-masculin.svg" : "./icons/user-feminin.svg"}
+                                    alt="Patient Icon"
+                                />
+                                <p>{patient.firstname} {patient.lastname}</p>
+                            </NavLink>
 
-                    </div>
+                        </div>
                     ))
-                }
+                    }
+                </div>
+                <button className="button_right_carrou form_button" onClick={scrollRight}>▶</button>
             </div>
-            <button className="button_right_carrou form_button" onClick={scrollRight}>▶</button>
         </div>
     )
 }
