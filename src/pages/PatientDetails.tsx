@@ -78,7 +78,7 @@ function PatientDetails() {
 
                 >
                     Assistant virtuel
-                    <img src="/public/icons/chatbot.svg" alt="Chatbot" className="w-20 h-20"/>
+                    <img src="/icons/chatbot.svg" alt="Chatbot" className="w-20 h-20"/>
                 </button>
 
                 {/* Modal */}
