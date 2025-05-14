@@ -11,7 +11,7 @@ function RenderPatients(){
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isSearched, setIsSearched] = useState(false);
-    const [patients, setPatients] = useState<Patient[]|null>(null);
+    const [patients, setPatients] = useState<Patient[]|null|undefined>(null);
 
     const {register,
         handleSubmit,
@@ -73,7 +73,7 @@ function RenderPatients(){
         };
 
         fetchPatient();
-    }, []);
+    });
 
     if (isLoading) {
         return (
@@ -98,7 +98,6 @@ function RenderPatients(){
             <h1 className="Liste des patients">Patients</h1>
             <div className="patient_page">
                 <div>
-                    <p className="nombre-patients">{patients?.length} Patients trouvés</p>
                     <div className="patient-search">
                         <form onSubmit={handleSubmit(OnSubmit)}>
                             <label>Rechercher un patient par nom de famille :</label>

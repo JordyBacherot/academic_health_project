@@ -37,6 +37,8 @@ function PatientDatas({graphType}:GraphProps) {
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const chartOptions = {responsive : true, maintainAspectRatio: false};
+
     useEffect(() => {
         const service = new ServiceDirectusAPI();
         const fetchData = async () => {
@@ -106,7 +108,7 @@ function PatientDatas({graphType}:GraphProps) {
             ]
         };
 
-        return <Line data={chartData} />
+        return <Line data={chartData} options={chartOptions}/>
 
     }if(graphType == "physical"){
 
@@ -137,7 +139,7 @@ function PatientDatas({graphType}:GraphProps) {
             }))
         };
 
-        return <Line data={chartData} />
+        return <Line data={chartData} options={chartOptions}/>
     }if(graphType == "psychological") {
 
         const emotionCounts = datas.reduce((acc, entry) => {
@@ -156,7 +158,7 @@ function PatientDatas({graphType}:GraphProps) {
             ]
         };
 
-        return <Bar data={chartData} />
+        return <Bar data={chartData} options={chartOptions}/>
     }
 
     return(<></>)

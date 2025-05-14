@@ -5,14 +5,21 @@ function PatientInfo() {
 
     const patient = usePatient();
 
-    function calculate_Age(patient:Patient):number{
+    function calculate_Age(patient:Patient):number|null{
         const now = new Date();
-        return now.getFullYear() - patient.birthyear;
+        if(patient.birthyear != null){
+            return now.getFullYear() - patient.birthyear;
+        }else{
+            return null;
+        }
+
     }
 
     function give_gender(patient:Patient):string{
-        if(patient.sex==1){
+        if(patient.sex==1) {
             return "homme";
+        }if(patient.sex==null){
+            return 'inconnu';
         }else{
             return "femme";
         }
