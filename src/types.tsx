@@ -51,6 +51,7 @@ export type physical = {
     duration:number;
     numberOfSteps:number;
     consumedCalories:number;
+    weight:number;
     people_id:string;
     date:Date|null;
 }

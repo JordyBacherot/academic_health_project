@@ -22,7 +22,7 @@ const scrollRight = () => {
 };
     return (
         <div className="carrousel">
-            <button className="button_left_carrou" onClick={scrollLeft}>◀</button>
+            <button className="button_left_carrou form_button" onClick={scrollLeft}>◀</button>
             <div className="carrousel_container" ref={carrouselRef}>
                 {patients?.map((patient) => (
                     <div key={patient.id} className="carrousel_item">
@@ -38,7 +38,7 @@ const scrollRight = () => {
                     ))
                 }
             </div>
-            <button className="button_right_carrou" onClick={scrollRight}>▶</button>
+            <button className="button_right_carrou form_button" onClick={scrollRight}>▶</button>
         </div>
     )
 }

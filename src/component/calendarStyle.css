@@ -21,6 +21,17 @@ button.rbc-input::-moz-focus-inner {
   padding: 0;
 }
 
+.confirmation-message {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
 .rbc-calendar {
   box-sizing: border-box;
   height: 100%;

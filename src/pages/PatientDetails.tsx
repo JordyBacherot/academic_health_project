@@ -74,11 +74,9 @@ function PatientDetails() {
                 </div>
                 <button
                     onClick={() => setIsChatbotOpen(true)}
-                    className="fixed top-3/4 lg:bottom-4 right-4 z-10 lg:top-160"
-
+                    className="fixed top-3/4 right-4 z-10 lg:top-5/6 rounded-full w-20 h-20"
                 >
-                    Assistant virtuel
-                    <img src="/icons/chatbot.svg" alt="Chatbot" className="w-20 h-20"/>
+                    <img src="/icons/chat.png" alt="Chatbot" className="w-15 h-15"/>
                 </button>
 
                 {/* Modal */}

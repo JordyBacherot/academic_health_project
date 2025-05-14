@@ -73,11 +73,11 @@ input[type="text"]::placeholder {
   opacity: 0.7;
 }
 
+
 button, input[type="submit"]{
   background: var(--periwinkle);
   color: var(--lavender-web);
   border: none;
-  border-radius: 8px;
   padding: 5px 10px;
   font-size: 1rem;
   cursor: pointer;
@@ -85,6 +85,10 @@ button, input[type="submit"]{
   display: flex;
   align-items: center;
   justify-content: center; /* centre les contenus horizontalement */
+}
+
+.form_button, input[type="submit"] {
+  border-radius: 0.7rem;
 }
 
 button:hover, input[type="submit"]:hover{
