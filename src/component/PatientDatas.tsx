@@ -76,8 +76,6 @@ function PatientDatas({graphType}:GraphProps) {
         fetchData();
     }, [graphType, patient, patient?.id])
 
-    console.log(datas)
-
     if (isLoading) {
         return (
             <>

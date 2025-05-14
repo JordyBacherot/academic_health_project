@@ -15,5 +15,3 @@ function Login() {
 }
 
 export default Login;
-
-// TODO : login page

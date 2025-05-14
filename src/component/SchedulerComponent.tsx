@@ -95,7 +95,6 @@ function SchedulerComponent() {
         try {
             const dataRdv = await get_rendezvous();
             if (dataRdv && Array.isArray(dataRdv)) {
-                console.log("Rendez-vous récupérés:", dataRdv);
                 const formattedEvents = dataRdv.map((rdv: RendezVous) => ({
                     start: new Date(rdv.start_date),
                     end: new Date(rdv.end_date),

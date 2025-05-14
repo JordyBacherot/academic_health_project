@@ -56,9 +56,6 @@ function Signin() {
         console.log("Inscription réussie avec succès");
     }
 
-
-    // TODO : Add a message to inform the user that the account has been created successfully
-    // TODO : Add a redirection to the login page after successful signup
     return (
         <div>
             <div>
