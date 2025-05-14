@@ -83,7 +83,7 @@ export default function Globalchat() {
                                 }
                             }}
                         />
-                        <button onClick={handleSendMessage} >
+                        <button className="form_button" onClick={handleSendMessage}>
                             Envoyer
                         </button>
                     </div>

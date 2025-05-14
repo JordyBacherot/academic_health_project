@@ -1,57 +1,48 @@
 import {useEffect, useState} from "react";
-import {SubmitHandler, useForm} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
 import {Patient, RenderPropsKeywords} from "../types.tsx";
 import Carrousel from "./Carrousel.tsx";
 import SchedulerComponent from "./SchedulerComponent.tsx";
 
-
 function RenderPatients(){
-
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [isSearched, setIsSearched] = useState(false);
-    const [patients, setPatients] = useState<Patient[]|null|undefined>(null);
+    const [allPatients, setAllPatients] = useState<Patient[]|null|undefined>(null);
+    const [filteredPatients, setFilteredPatients] = useState<Patient[]|null|undefined>(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const {register,
+    const {
+        control,
         handleSubmit,
         reset,
-        formState: { errors },} = useForm<RenderPropsKeywords>()
-
-    const OnSubmit: SubmitHandler<RenderPropsKeywords> = async (data) => {
-        setIsSearched(true);
-        setIsLoading(true);
-        const service = new ServiceDirectusAPI();
-        try {
-            const result = await service.get_patients_by_keyword(data.keyword);
-            setPatients(result);
-        } catch (e) {
-            if (e instanceof Error) {
-                setError(e);
-            } else {
-                setError(Error("An unknown error occurred."));
-            }
-        } finally {
-            setIsLoading(false);
+        formState: { errors },
+    } = useForm<RenderPropsKeywords>({
+        defaultValues: {
+            keyword: ""
         }
+    });
+
+    const filterPatients = (keyword: string) => {
+        setSearchTerm(keyword);
+
+        if (!keyword.trim()) {
+            setFilteredPatients(allPatients);
+            return;
+        }
+
+        const lowercaseKeyword = keyword.toLowerCase();
+        const filtered = allPatients?.filter(patient =>
+            patient.lastname?.toLowerCase().includes(lowercaseKeyword) ||
+            patient.firstname?.toLowerCase().includes(lowercaseKeyword)
+        );
+
+        setFilteredPatients(filtered);
     };
 
-    const handleReset = async () => {
-        setIsSearched(false);
-        setIsLoading(true)
-        const service = new ServiceDirectusAPI();
-        try {
-            const patients = await service.get_items_people();
-            setPatients(patients);
-        }catch (e) {
-            if (e instanceof Error) {
-                setError(e);
-            } else {
-                setError(Error("An unknown error occurred."));
-            }
-        } finally {
-            setIsLoading(false);
-        }
+    const handleReset = () => {
+        setFilteredPatients(allPatients);
+        setSearchTerm("");
         reset();
     };
 
@@ -60,19 +51,20 @@ function RenderPatients(){
         const fetchPatient = async () => {
             try {
                 const result = await service.get_items_people();
-                setPatients(result);
-                } catch (e) {
-                    if (e instanceof Error) {
-                        setError(e);
-                    } else {
-                        setError(Error("An unknown error occurred."));
-                    }
-                } finally {
-                    setIsLoading(false);
+                setAllPatients(result);
+                setFilteredPatients(result);
+            } catch (e) {
+                if (e instanceof Error) {
+                    setError(e);
+                } else {
+                    setError(Error("An unknown error occurred."));
                 }
+            } finally {
+                setIsLoading(false);
+            }
         };
         fetchPatient();
-    }, []);
+    }, []); // Ajout de la dépendance vide pour n'exécuter qu'une seule fois
 
     if (isLoading) {
         return (
@@ -98,21 +90,42 @@ function RenderPatients(){
             <div className="patient_page">
                 <div>
                     <div className="patient-search">
-                        <form onSubmit={handleSubmit(OnSubmit)}>
-                            <label>Rechercher un patient par nom de famille :</label>
-                            <input className="min-w-20" type="text" {...register("keyword", {required: true})} placeholder="Entrer le nom du patient"/>
+                        <form onSubmit={handleSubmit(() => {})}>
+                            <label>Rechercher un patient :</label>
+                            <Controller
+                                name="keyword"
+                                control={control}
+                                render={({ field }) => (
+                                    <input
+                                        className="min-w-20"
+                                        type="text"
+                                        placeholder="Entrer le nom ou prénom"
+                                        value={searchTerm}
+                                        onChange={(e) => {
+                                            field.onChange(e);
+                                            filterPatients(e.target.value);
+                                        }}
+                                    />
+                                )}
+                            />
                             {errors.keyword && (<div><span className="error-msg">Veuillez entrer une valeur</span></div>)}
-                            <input type="submit" />
-                            {isSearched && (<button onClick={handleReset} className="form_button">Reset</button>)}
+                            {searchTerm && (
+                                <button
+                                    onClick={handleReset}
+                                    type="button"
+                                    className="form_button ml-2"
+                                >
+                                    &times;
+                                </button>
+                            )}
                         </form>
                     </div>
                 </div>
-                <Carrousel patients={patients}/>
+                <Carrousel patients={filteredPatients}/>
                 <SchedulerComponent/>
             </div>
         </div>
-    )
+    );
 }
 
 export default RenderPatients;
-
