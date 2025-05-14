@@ -37,7 +37,7 @@ function PatientDatas({graphType}:GraphProps) {
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const chartOptions = {responsive : true, maintainAspectRatio: false};
+    const chartOptions = {responsive : true};
 
     useEffect(() => {
         const service = new ServiceDirectusAPI();
