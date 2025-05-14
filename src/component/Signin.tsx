@@ -1,34 +1,42 @@
-import {useContext, useState} from "react";
-import {signIn_Supabase} from "../service/serviceSupabaseAPI.ts";
-import {ServiceDirectusAPI} from "../service/serviceDirectusAPI.ts";
-import {IsUserConnectedContext} from "../contexts/UserContext.tsx";
+import { useContext } from "react";
+import { signIn_Supabase } from "../service/serviceSupabaseAPI.ts";
+import { ServiceDirectusAPI } from "../service/serviceDirectusAPI.ts";
+import { IsUserConnectedContext } from "../contexts/UserContext.tsx";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router";
+
+
+interface FormInputs {
+    email: string;
+    password: string;
+}
 
 function Signin() {
     const context = useContext(IsUserConnectedContext);
+    const navigate = useNavigate();
 
     if (!context) {
         throw new Error("SomeComponent must be used within a ContextProvider");
     }
 
-    const {setIsUserConnected } = context;
+    const { setIsUserConnected } = context;
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    // Configuration de React Hook Form
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting }
+    } = useForm<FormInputs>();
 
-    async function handleInputChangeEmail(e : any){
-        setEmail(e.target.value);
-    }
+    const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+        const { email, password } = data;
 
-    async function handleInputChangePassword(e : any){
-        setPassword(e.target.value);
-    }
-
-    async function handleSignin(){
         if (email.trim() === '' || password.trim() === '') {
             console.error("Email et mot de passe sont requis");
             return;
         }
-        const serviceDirectus = new ServiceDirectusAPI()
+
+        const serviceDirectus = new ServiceDirectusAPI();
 
         try {
             // Sign in with Directus API
@@ -56,29 +64,66 @@ function Signin() {
         setIsUserConnected(cutemail);
         localStorage.setItem("name", cutemail);
         console.log("Utilisateur connecté");
-    }
+
+        navigate("/");
+    };
 
     return (
-        <div>
-            <div>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={handleInputChangeEmail}
-                    placeholder="Email"
-                />
-            </div>
-            <div>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={handleInputChangePassword}
-                    placeholder="Mot de passe"
-                />
-            </div>
-            <button onClick={handleSignin}>Se connecter</button>
+        <div className="element">
+            <h1>Se connecter : </h1>
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                <label className="flex flex-col">
+                    <input
+                        type="email"
+                        className="w-full p-2 border rounded"
+                        placeholder="Email"
+                        {...register("email", {
+                            required: "L'email est requis",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Email invalide"
+                            }
+                        })}
+                    />
+                    {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+                </label>
+                <label>
+                    <input
+                        type="password"
+                        className="w-full p-2 border rounded"
+                        placeholder="Mot de passe"
+                        {...register("password", {
+                            required: "Le mot de passe est requis",
+                            minLength: {
+                                value: 6,
+                                message: "Le mot de passe doit contenir au moins 6 caractères"
+                            }
+                        })}
+                    />
+                    {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+                </label>
+
+                <button
+                    type="submit"
+                    className="form_button"
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? "Connexion..." : "Se connecter"}
+                </button>
+
+                <div className="text-center mt-4">
+                    <p>Pas encore de compte ?</p>
+                    <button
+                        type="button"
+                        onClick={() => navigate("/create_account")}
+                        className="form_button w-full mt-2"
+                    >
+                        Inscrivez-vous !
+                    </button>
+                </div>
+            </form>
         </div>
-    )
+    );
 }
 
 export default Signin;

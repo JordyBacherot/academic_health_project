@@ -8,6 +8,7 @@ import PatientDatas from "./component/PatientDatas.tsx"
 import PatientInfo from "./component/PatientInfo.tsx";
 import GlobalChatPage from "./pages/GlobalChatPage.tsx";
 import UserContextProvider from "./contexts/UserContext.tsx";
+import CreateAccount from "./pages/CreateAccount.tsx";
 
 createRoot(document.getElementById('root')!).render(
     <UserContextProvider>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
                 </Route>
 
                 <Route path="login" element={<Login/>}/>
+                <Route path="create_account" element={<CreateAccount/>}/>
                 <Route path="globalchat" element={<GlobalChatPage/>}/>
             </Routes>
         </BrowserRouter>

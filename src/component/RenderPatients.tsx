@@ -108,7 +108,7 @@ function RenderPatients(){
                     </div>
                 </div>
                 <Carrousel patients={patients}/>
-                <SchedulerComponent></SchedulerComponent>
+                <SchedulerComponent/>
             </div>
         </div>
     )

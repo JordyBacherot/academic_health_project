@@ -1,19 +1,15 @@
 import MenuPrincipal from "../component/MenuPrincipal.tsx";
 import Background from "../Background.tsx";
-import Signin from "../component/Signin.tsx";
+import Signup from "../component/Signup.tsx";
 
-function Login() {
+export default function CreateAccount() {
     return (
-        <>
+        <div>
             <MenuPrincipal/>
             <div className="App">
-                <Signin></Signin>
+                <Signup></Signup>
             </div>
             <Background/>
-        </>
+        </div>
     );
 }
-
-export default Login;
-
-// TODO : login page

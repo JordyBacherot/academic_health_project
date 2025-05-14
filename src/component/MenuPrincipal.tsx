@@ -15,7 +15,7 @@ function MenuPrincipal(){
     const location = useLocation();
 
     // Hide menu on the login page
-    if (location.pathname === "/login") {
+    if (location.pathname === "/login" || location.pathname === "/create_account") {
         return (
             <div id='mini-menu'>
                 <nav>
