@@ -88,7 +88,7 @@ function PatientDetails() {
                             </div>
                             <button
                                 onClick={() => setIsChatbotOpen(false)}
-                                className="absolute top-2 right-2 text-xl"
+                                className="absolute top-2 right-2 text-xl rounded-full"
                             >
                                 {/*Caractère spécial*/}
                                 &times;

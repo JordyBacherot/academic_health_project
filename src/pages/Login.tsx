@@ -4,13 +4,13 @@ import Signin from "../component/Signin.tsx";
 
 function Login() {
     return (
-        <div>
+        <>
+            <MenuPrincipal/>
             <div className="App">
-                <MenuPrincipal/>
                 <Signin></Signin>
             </div>
             <Background/>
-        </div>
+        </>
     );
 }
 
