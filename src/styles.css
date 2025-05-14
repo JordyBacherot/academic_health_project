@@ -2,7 +2,7 @@
 
 :root{
   --lavender-web: #E5E3F1ff;
-  --pink-lavender: #E8BEEFff;
+  --pink-lavender: rgba(232, 190, 239, 0.37);
   --magnolia: #F0E9EEff;
   --non-photo-blue: #B7E7F2ff;
   --periwinkle: #B6B5EEff;
@@ -187,20 +187,46 @@ button:hover, input[type="submit"]:hover{
   width: 100%;
 }
 
+.menu-link {
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.active-link {
+  background-color: var(--pink-lavender);
+}
+
 /*Glassmorphism fond element */
 .element{
   position: relative;
-  padding: 5%;
-  margin: 5%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   border: 1px solid var(--color-white);
 }
 
-h1{
-  font-size: 2rem;
+.element > div{
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+}
+
+.text-xl{
+  font-size: 1.5rem;
   margin-bottom: 2%;
+  width: 100%;
+  padding: 2%;
+  border-radius: 10px;
+  color: var(--periwinkle);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-white);
+}
+
+hr{
+  border: 1px solid var(--periwinkle);
+  margin: 2% 0;
 }
 
 .patient_page{
@@ -257,8 +283,16 @@ h1{
   transition: background 0.3s ease;
 }
 
+.patient-search{
+  padding: 2%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  border: 1px solid var(--color-white);
+}
+
 .carrousel_item:hover {
   background: rgba(255, 255, 255, 0.7);
+  border: var(--periwinkle);
   transition: background 0.3s ease;
 }
 
@@ -288,6 +322,18 @@ h1{
 .patient-search form button, .patient-search form input[type="submit"]{
   margin-left: 2%;
 }
+
+.scheduler{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
+}
+
+.scheduler > button{
+  min-width: 30%;
+}
+
 
  /*orientation landscape*/
 @media (orientation: landscape) {

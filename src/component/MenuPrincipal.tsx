@@ -1,19 +1,22 @@
-import { NavLink, useLocation} from "react-router";
-import {useContext} from "react";
-import {IsUserConnectedContext} from "../contexts/UserContext.tsx";
-import {signOut_Supabase} from "../service/serviceSupabaseAPI.ts";
+import { NavLink, useLocation } from "react-router";
+import { useContext } from "react";
+import { IsUserConnectedContext } from "../contexts/UserContext.tsx";
+import { signOut_Supabase } from "../service/serviceSupabaseAPI.ts";
 
-function MiniMenu(){
-    return(
-            <NavLink
-                to="/"
-                className="title-link"
-            >
-                <img src="/icons/home.svg" alt="icon home"/>
-            </NavLink>)
+function MiniMenu() {
+    return (
+        <NavLink
+            to="/"
+            className={({ isActive }) =>
+                isActive ? "title-link active-link" : "title-link"
+            }
+        >
+            <img src="/icons/home.svg" alt="icon home" />
+        </NavLink>
+    )
 }
 
-function MenuPrincipal(){
+function MenuPrincipal() {
     const location = useLocation();
     const userContext = useContext(IsUserConnectedContext);
     if (!userContext) {
@@ -22,14 +25,12 @@ function MenuPrincipal(){
 
     const { isUserConnected, setIsUserConnected } = userContext;
 
-    console.log("isUserConnected", isUserConnected);
-
     // Hide menu on the login page
     if (location.pathname === "/login" || location.pathname === "/create_account") {
         return (
             <div id='mini-menu'>
                 <nav>
-                    <MiniMenu/>
+                    <MiniMenu />
                 </nav>
             </div>
         )
@@ -44,23 +45,39 @@ function MenuPrincipal(){
         console.log("Logout");
     }
 
-    return(
+    return (
         <div id='menu-principal'>
             <nav>
-                <MiniMenu/>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive ? "menu-link active-link" : "menu-link"
+                    }
+                >
+                    <img src="/icons/home.svg" alt="icon home" />
+                </NavLink>
 
                 <NavLink
                     to="/globalchat"
+                    className={({ isActive }) =>
+                        isActive ? "menu-link active-link" : "menu-link"
+                    }
                 >
-                    <img src="/icons/connect.svg" alt="icon globalchat"/>
+                    <img src="/icons/connect.svg" alt="icon globalchat" />
                 </NavLink>
+
                 {
                     isUserConnected !== "not connected" ? (
-                        <NavLink to="/">
-                            <img src="/icons/logout_small.svg" alt="icon logout" onClick={handleLogout}/>
+                        <NavLink to="/" className="menu-link">
+                            <img src="/icons/logout_small.svg" alt="icon logout" onClick={handleLogout} />
                         </NavLink>
                     ) : (
-                        <NavLink to="/login">
+                        <NavLink
+                            to="/login"
+                            className={({ isActive }) =>
+                                isActive ? "menu-link active-link" : "menu-link"
+                            }
+                        >
                             <img src="/icons/login_small.svg" alt="icon login" />
                         </NavLink>
                     )

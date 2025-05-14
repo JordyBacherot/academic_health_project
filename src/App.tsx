@@ -32,10 +32,11 @@ function App() {
         <>
             <MenuPrincipal/>
             <div className="App">
-                <h1 className="text-xl">Bienvenue {localStorage.getItem("name")}</h1>
-
             {isUserConnected !== "not connected" ? (
-                <PatientsMaster/>
+                <>
+                    <h1 className="text-xl">Bienvenue {localStorage.getItem("name")}</h1>
+                    <PatientsMaster/>
+                </>
             ) : (
                 <Home/>
             )}

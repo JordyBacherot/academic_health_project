@@ -56,13 +56,15 @@ export default function Globalchat() {
 
     return (
         <div id="globalchat" className="element">
+            <h1 className="text-xl">Chat global : </h1>
+            <hr/>
             {!isUserConnected || isUserConnected === "not connected" ? (
                 <div className="text-center text-red-600 font-bold">
                     Vous devez être connecté pour accéder au chat global.
                 </div>
             ) : (
                 <>
-                    <div>
+                    <div className="max-h-[50vh] lg:max-h-[30vh]">
                         {[...messages].reverse().map((msg, index) => (
                             <div key={index}>
                                 <span className="id_user">{shortcutName(msg.id_user_admin) || 'Utilisateur'}: </span>

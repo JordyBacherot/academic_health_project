@@ -130,7 +130,7 @@ function SchedulerComponent() {
                         </div>
                         <button
                             onClick={() => setIsAddRdvFormOpen(false)}
-                            className="absolute top-2 right-2 text-xl rounded-full"
+                            className="absolute top-2 right-2 rounded-full"
                         >
                             &times;
                         </button>

@@ -86,10 +86,10 @@ function RenderPatients(){
 
     return(
         <div className="patient-render">
-            <h1 className="Liste des patients">Patients</h1>
             <div className="patient_page">
                 <div>
                     <div className="patient-search">
+                        <h1 className="Liste des patients">Patients</h1>
                         <form onSubmit={handleSubmit(() => {})}>
                             <label>Rechercher un patient :</label>
                             <Controller
