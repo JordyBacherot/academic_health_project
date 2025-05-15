@@ -52,7 +52,7 @@ bun run dev
 ```
 
 ## 📁 Project Structure
-
+```
 academic_health_project/
 ├── public/               # Static files
 ├── src/                  # Main source code
@@ -66,5 +66,6 @@ academic_health_project/
 ├── bun.lock              # Bun dependency lock
 ├── tsconfig.json         # TypeScript config
 └── README.md             # You're reading it!
+```
 
 
