@@ -118,10 +118,5 @@ function PatientDetails() {
 
 export default PatientDetails;
 
-//TODO : global presentation (picture to add)
-
-//TODO : css menu for accessing basic infos, psychological, physical, physiological datas
-
-//TODO : reponsive charts
 
 
