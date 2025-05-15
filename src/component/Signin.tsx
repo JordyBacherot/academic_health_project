@@ -69,7 +69,7 @@ function Signin() {
     };
 
     return (
-        <div className="element">
+        <div className="element p-5">
             <h1>Se connecter : </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <label className="flex flex-col">
