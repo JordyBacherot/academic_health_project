@@ -2,6 +2,7 @@ import {Fragment, useState} from 'react';
 import { llm_stream_request } from  '../service/serviceLLM';
 import { BaseMessage, HumanMessage } from '@langchain/core/messages';
 import {Patient} from "../types.tsx";
+import {calculateCalories} from "./PatientInfo.tsx";
 
 type ChatbotProps = {
     patient: Patient | null;
@@ -24,6 +25,7 @@ function Chatbot( { patient }: ChatbotProps) {
             Poids initial : ${patient.weightStart} kg
             IMC de départ : ${patient.bmiStart}
             Objectifs : ${patient.weightGoal} kg, IMC ${patient.bmiGoal}
+            Calories conseillées par jour : ${calculateCalories(patient)}
         `;
     };
 
