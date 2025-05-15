@@ -40,11 +40,13 @@ return (
     <div className="flex flex-col gap-6 p-6 item-center justify-center sm:flex-col sm:flex-wrap sm:gap-4">
     {boxes.map((text, index) => (
         <div
-            key={index}       >
-            <div className="bg-white/25 h-90 text-black shadow-lg p-4 rounded-lg  flex items-center justify-center text-center margin-2">
-            {text}
+            key={index}>
+            <div className="bg-blue-500/10 h-90 text-black shadow-lg p-4 rounded-lg flex items-center justify-center text-center margin-2">
+                {text}
             </div>
-            <img src={images[index]} alt={altTexts[index]} className="w-32 h-32 object-contain mb-4 opacity-50 flex items-center justify-center"/>
+            <div className="bg-white/50 text-black shadow-lg p-4 rounded-lg flex items-center justify-center text-center margin-2 margin-top-2">
+                <img src={images[index]} alt={altTexts[index]} className="w-25 h-25 object-contain mb-4 opacity-50 mx-auto"/>
+            </div>
         </div>
     ))}
 </div>
