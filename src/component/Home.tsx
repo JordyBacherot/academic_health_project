@@ -14,25 +14,23 @@ export default function Home(){
 
 return (
     <>
-    <h1>Home</h1>
-    <div className = "bg-white w-full max-width : 700px p-6 rounded-lg shadow-lg">
-        <img src="/icons/logo.svg" alt="medecin" className="w-32 h-32 object-contain mb-4 left-0"/>
-        <p className="text-2xl text-center font-weight : bold">Bienvenue sur HEALTH PROJECT</p>
+    <div className = "text-xl font-weight : bold flex items-center text-center justify-center font-weight : bold ">
+        <img src="/icons/logo_small.svg" alt="medecin" className="mb-4 h-20 w-20 flex justify-center m-4 items-center absolute start-0"/>
+        Bienvenue sur HEALTH PROJECT
     </div>
-    <div className = "bg-white w-full max-width : 700px p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
-        <img src="/icons/logo.svg" alt="medecin" className="w-32 h-32 object-contain mb-4"/>
+    <div className = "bg-white/10 w-full max-width : 700px p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
         <p className = "text-center flex items-center justify-center">Sur cette application, vous trouverez :</p>
     </div>
     <div className="flex flex-col gap-6 p-6">
     {boxes.map((text, index) => (
-    <div
-        key={index}
-        className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
-    >
-        <div className="h-90 text-black shadow-lg p-4 rounded-lg w-2/3 max-w-md flex items-center justify-center text-center margin-2">
-        {text}
+        <div
+            key={index}
+            className="justify-start"
+        >
+            <div className="bg-white/25 h-90 text-black shadow-lg p-4 rounded-lg w-2/3 max-w-md flex items-center justify-center text-center margin-2">
+            {text}
+            </div>
         </div>
-    </div>
     ))}
 </div>
     </>
