@@ -17,7 +17,6 @@ function PatientDetails() {
 
     const location = useLocation();
 
-    // Regex to match only `/patients/{uuid}` (with nothing after the UUID)
     const match = location.pathname.match(
         /^\/patients\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
     );
