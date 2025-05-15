@@ -223,7 +223,7 @@ button:hover, input[type="submit"]:hover{
 
 hr{
   border: 1px solid var(--periwinkle);
-  margin: 2% 0;
+  margin: 0;
 }
 
 .patient_page{
@@ -260,6 +260,11 @@ hr{
 .menuPatient a:hover {
   background: rgba(255, 255, 255, 0.93);
   transition: background 0.3s ease;
+}
+
+.titre_liste_patient{
+  font-size: 1.5rem;
+  color: var(--periwinkle);
 }
 
 .patient-details canvas{
