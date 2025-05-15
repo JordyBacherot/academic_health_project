@@ -79,7 +79,6 @@ function PatientDetails() {
                                     <h2>{patient?.firstname} {patient?.lastname}</h2>
 
                                 </div>
-                                <hr/>
                                 <MenuPatient id={id}/>
                         </div>
                 </div>

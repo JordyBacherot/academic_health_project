@@ -89,7 +89,8 @@ function RenderPatients(){
             <div className="patient_page">
                 <div>
                     <div className="patient-search">
-                        <h1 className="Liste des patients">Patients</h1>
+                        <h1 className="titre_liste_patient">Patients</h1>
+                        <hr/>
                         <form onSubmit={handleSubmit(() => {})}>
                             <label>Rechercher un patient :</label>
                             <Controller
