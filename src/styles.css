@@ -262,6 +262,11 @@ hr{
   transition: background 0.3s ease;
 }
 
+.patient-details canvas{
+  margin-top: 10vh;
+  height: 50vh;
+}
+
 .info_patient ul {
   display: flex;
   flex-direction: row;
@@ -421,7 +426,3 @@ hr{
   }
 }
 
-.patient_details {
-  display: flex;
-  z-index: 4;
-}
