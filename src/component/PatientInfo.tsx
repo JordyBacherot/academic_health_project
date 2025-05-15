@@ -1,6 +1,50 @@
 import {Patient} from "../types.tsx";
 import { usePatient } from "../contexts/PatientContext";
 
+function calculate_Age(patient: Patient): number | null {
+    const now = new Date();
+    if (patient.birthyear != null) {
+        return now.getFullYear() - patient.birthyear;
+    } else {
+        return null;
+    }
+}
+
+export function calculateCalories(patient: Patient) {
+    if (!patient.sex || !patient.weightStart || !patient.height || !patient.birthyear) return "Données manquantes";
+
+    const age = calculate_Age(patient);
+
+    if(age!=null){
+        const bmr =
+            patient.sex == 1
+                ? 10 * patient.weightStart + 6.25 * patient.height - 5 * age + 5
+                : 10 * patient.weightStart + 6.25 * patient.height - 5 * age - 161;
+
+        const activityFactors: Record<string, number> = {
+            "sedentary": 1.2,
+            "low active": 1.2,
+            "somewhat active": 1.55,
+            active: 1.55,
+            "highly active": 1.9,
+            "": 1.2
+        };
+
+        const activityFactor = activityFactors[patient.activityProfile] || 1.2;
+        const maintenanceCalories = bmr * activityFactor;
+
+        let finalCalories = maintenanceCalories;
+        if (patient.weightStart > patient.weightGoal) {
+            finalCalories -= 500; // typical deficit
+        } else if (patient.weightStart < patient.weightGoal) {
+            finalCalories += 500; // typical surplus
+    }
+        return Math.round(finalCalories);
+
+    }
+    return "Données manquantes";
+}
+
 function PatientInfo() {
 
     const patient = usePatient();
@@ -21,7 +65,7 @@ function PatientInfo() {
         "somewhat active": "Activité modérée",
         "active": "Activité standard",
         "highly active": "Activité importante",
-        "": null
+        "": "Pas de données"
     };
 
     function translateValue<T extends Record<string, string>>(
@@ -35,49 +79,7 @@ function PatientInfo() {
         return dict[key] ?? label;
     }
 
-    function calculateCalories(patient: Patient) {
-        if (!patient.sex || !patient.weightStart || !patient.height || !patient.birthyear) return "Données manquantes";
-
-        const age = calculate_Age(patient);
-        const bmr =
-            patient.sex == 1
-                ? 10 * patient.weightStart + 6.25 * patient.height - 5 * age + 5
-                : 10 * patient.weightStart + 6.25 * patient.height - 5 * age - 161;
-
-        const activityFactors: Record<string, number> = {
-            "sedentary": 1.2,
-            "low active": 1.2,
-            "somewhat active": 1.55,
-            active: 1.55,
-            "highly active": 1.9,
-            "": "niveau d'activité inconnu"
-        };
-
-        const activityFactor = activityFactors[patient.activityProfile] || 1.2;
-        const maintenanceCalories = bmr * activityFactor;
-
-        let finalCalories = maintenanceCalories;
-        if (patient.weightStart > patient.weightGoal) {
-            finalCalories -= 500; // typical deficit
-        } else if (patient.weightStart < patient.weightGoal) {
-            finalCalories += 500; // typical surplus
-        }
-            return Math.round(finalCalories);
-        }
-
-
-
-        function calculate_Age(patient: Patient): number | null {
-            const now = new Date();
-            if (patient.birthyear != null) {
-                return now.getFullYear() - patient.birthyear;
-            } else {
-                return null;
-            }
-
-        }
-
-        function give_gender(patient: Patient): string {
+        function give_gender(patient: Patient): string | null {
             if (patient.sex == 1) {
                 return "homme";
             }
@@ -91,7 +93,7 @@ function PatientInfo() {
         if (patient) {
             return (<div className="info_patient">
                 <ul>
-                    {patient.birthDate && (
+                    {patient.birthyear && (
                         <li>
                             <img src="/icons/icon_age_small.png" alt="icon age patient"/>
                             <p>Âge :</p>
