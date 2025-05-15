@@ -16,7 +16,8 @@ return (
     <>
     <h1>Home</h1>
     <div className = "bg-white w-full max-width : 700px p-6 rounded-lg shadow-lg">
-        <p className="text-2xl text-center font-weight : bold">Bienvenue sur l'application de gestion des patients</p>
+        <img src="/icons/logo.svg" alt="medecin" className="w-32 h-32 object-contain mb-4 left-0"/>
+        <p className="text-2xl text-center font-weight : bold">Bienvenue sur HEALTH PROJECT</p>
     </div>
     <div className = "bg-white w-full max-width : 700px p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
         <img src="/icons/logo.svg" alt="medecin" className="w-32 h-32 object-contain mb-4"/>
@@ -28,7 +29,7 @@ return (
         key={index}
         className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
     >
-        <div className="h-45 text-black shadow-lg p-4 rounded-lg w-2/3 max-w-md">
+        <div className="h-90 text-black shadow-lg p-4 rounded-lg w-2/3 max-w-md flex items-center justify-center text-center margin-2">
         {text}
         </div>
     </div>
