@@ -92,35 +92,64 @@ function PatientInfo() {
             return (<div className="info_patient">
                 <ul>
                     {patient.birthDate && (
-                        <li>Âge : {calculate_Age(patient)}</li>
+                        <li>
+                            <img src="/icons/icon_age_small.png" alt="icon age patient"/>
+                            <p>Âge :</p>
+                            <p>{calculate_Age(patient)}</p>
+                        </li>
                     )}
                     {patient.sex && (
-                        <li>Sexe : {give_gender(patient)}</li>
+                        <li>
+                            <img src="/icons/icon_sex_small.png" alt="icon sexe patient"/>
+                            <p>Sexe :</p>
+                            <p>{give_gender(patient)}</p>
+                        </li>
                     )}
                     {patient.height != null && (
-                        <li>Taille : {patient.height} cm</li>
+                        <li>
+                            <img src="/icons/icon_tape_small.png" alt="icon taille patient"/>
+                            <p>Taille :</p>
+                            <p>{patient.height} cm</p>
+                        </li>
                     )}
                     {patient.weightStart != null && (
-                        <li>Poids initial : {patient.weightStart} kg</li>
+                        <li>
+                            <img src="/icons/icon_balance_small.png" alt="icon poids patient"/>
+                            <p>Poids initial :</p>
+                            <p>{patient.weightStart} kg</p>
+                        </li>
                     )}
                     {patient.bmiStart && (
-                        <li>IMC de départ : {translateValue(bmiTranslation, patient.bmiStart)}</li>
+                        <li>
+                            <img src="/icons/icon_bio_small.png" alt="icon IMC départ patient"/>
+                            <p>IMC de départ :</p>
+                            <p>{translateValue(bmiTranslation, patient.bmiStart)}</p>
+                        </li>
                     )}
 
                     {patient.activityProfile != null && (
-                        <li>Niveau d'activité : {translateValue(activityTranslation, patient.activityProfile)}</li>
+                        <li>
+                            <img src="/icons/icon_sports_home.svg" alt="icon activité sportive patient"/>
+                            <p>Niveau d'activité :</p>
+                            <p>{translateValue(activityTranslation, patient.activityProfile)}</p>
+                        </li>
                     )}
 
                     {(patient.weightGoal != null) && (
                         <li>
+                            <img src="/icons/icon_goal_small.png" alt="icon objectif patient"/>
                             <strong>
-                                Objectifs :
-                                Poids idéal : ${patient.weightGoal} kg
-                                IMC voulu : {translateValue(bmiTranslation, patient.bmiGoal)}
+                                <p>Objectifs :</p>
+                                <p>Poids idéal : ${patient.weightGoal} kg</p>
+                                <p>IMC voulu : {translateValue(bmiTranslation, patient.bmiGoal)}</p>
                             </strong>
                         </li>
                     )}
-                    <li>Calories recommandées : {calculateCalories(patient)}</li>
+                    <li>
+                        <img src="/icons/icon_calorie_small.png" alt="icon calorie patient"/>
+                        <p>Calories recommandées :</p>
+                        <p>{calculateCalories(patient)}</p>
+                    </li>
                 </ul>
             </div>)
         } else {
