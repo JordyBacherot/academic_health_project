@@ -1,5 +1,5 @@
 import MenuPrincipal from "../component/MenuPrincipal.tsx";
-import {useParams} from "react-router";
+import {Navigate, useLocation, useParams} from "react-router";
 import MenuPatient from "../component/MenuPatient.tsx";
 import {useEffect, useState} from "react";
 import {Patient} from "../types.tsx";
@@ -14,6 +14,13 @@ function PatientDetails() {
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isChatbotOpen, setIsChatbotOpen] = useState(false); // Modal state
+
+    const location = useLocation();
+
+    // Regex to match only `/patients/{uuid}` (with nothing after the UUID)
+    const match = location.pathname.match(
+        /^\/patients\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+    );
 
     useEffect(() => {
         const service = new ServiceDirectusAPI();
@@ -104,6 +111,7 @@ function PatientDetails() {
                 )}
             </PatientContext.Provider>
             <Background/>
+            {match ? <Navigate replace to="patientInfos" /> : null}
         </>
 
     )
