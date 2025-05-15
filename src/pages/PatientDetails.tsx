@@ -64,9 +64,16 @@ function PatientDetails() {
             <PatientContext.Provider value={patient}>
                 <div className="App">
                         <div className="patient-details">
-                                <div className="patient-name">
+                                <div className="patient-name flex items-center align-items-center">
+                                    <img
+                                        src={patient?.sex === 1 ? "/icons/user-masculin.svg" : "/icons/user-feminin.svg"}
+                                        alt="Patient Icon"
+                                        className="w-10 h-10 rounded-full"
+                                    />
                                     <h2>{patient?.firstname} {patient?.lastname}</h2>
+
                                 </div>
+                                <hr/>
                                 <MenuPatient id={id}/>
                         </div>
                 </div>
@@ -86,7 +93,7 @@ function PatientDetails() {
                             </div>
                             <button
                                 onClick={() => setIsChatbotOpen(false)}
-                                className="absolute top-2 right-2 text-xl rounded-full"
+                                className="absolute top-2 right-2 rounded-full"
                             >
                                 {/*Caractère spécial*/}
                                 &times;

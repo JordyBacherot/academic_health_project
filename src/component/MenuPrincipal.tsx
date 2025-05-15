@@ -11,7 +11,7 @@ function MiniMenu() {
                 isActive ? "title-link active-link" : "title-link"
             }
         >
-            <img src="/icons/home.svg" alt="icon home" />
+            <img src="/icons/logo_small.svg" alt="icon home" />
         </NavLink>
     )
 }
@@ -54,7 +54,7 @@ function MenuPrincipal() {
                         isActive ? "menu-link active-link" : "menu-link"
                     }
                 >
-                    <img src="/icons/home.svg" alt="icon home" />
+                    <img src="/icons/logo_small.svg" alt="icon home" />
                 </NavLink>
 
                 <NavLink

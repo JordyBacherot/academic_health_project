@@ -89,7 +89,7 @@ function PatientInfo() {
         }
 
         if (patient) {
-            return (<div>
+            return (<div className="info_patient">
                 <ul>
                     {patient.birthDate && (
                         <li>Âge : {calculate_Age(patient)}</li>
