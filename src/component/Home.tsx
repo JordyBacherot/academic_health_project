@@ -30,29 +30,28 @@ export default function Home(){
 
 return (
     <>
-    <div className = "text-xl font-weight : bold flex items-center text-center justify-center font-weight : bold ">
-        <img src="/icons/logo_small.svg" alt="medecin" className="mb-4 sm:w-10 sm:h-10 h-20 w-20 flex justify-center m-4 items-center start-0"/>
-        HEALTH PROJECT
-    </div>
-    <div className = "bg-white/10 w-full max-width : 700px p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
-        <p className = "text-center flex items-center justify-center">Une application où vous trouverez :</p>
-    </div>
-    <div className="flex flex-col gap-6 p-6 item-center justify-center sm:flex-col sm:flex-wrap sm:gap-4">
-    {boxes.map((text, index) => (
-        <div
-            key={index}>
-            <div className="bg-blue-500/10 h-90 text-black shadow-lg p-4 rounded-lg flex items-center justify-center text-center margin-2">
-                {text}
-            </div>
-            <div className="bg-white/50 text-black shadow-lg p-4 rounded-lg flex items-center justify-center text-center margin-2 margin-top-2">
-                <img src={images[index]} alt={altTexts[index]} className="w-25 h-25 object-contain mb-4 opacity-50 mx-auto"/>
-            </div>
+        <div className = "text-xl flex items-center text-center justify-center font-weight : bold ">
+            <img src="/icons/logo_small.svg" alt="logo application" className="mb-4 sm:w-10 sm:h-10 h-20 w-20 flex justify-center m-4 items-center start-0"/>
+            HEALTH PROJECT
         </div>
-    ))}
-</div>
+        <div className = "bg-white/10 w-full max-width : 700px p-6 rounded-lg shadow-lg flex flex-col items-center justify-center">
+            <p className = "text-center flex items-center justify-center">Une application où vous trouverez :</p>
+        </div>
+        <div className="flex flex-col gap-6 p-6 item-center justify-center sm:flex-col sm:flex-wrap sm:gap-4">
+            {boxes.map((text, index) => (
+                <div
+                    key={index}>
+                    <div className="bg-blue-500/10 h-90 text-black shadow-lg p-4 rounded-lg flex items-center justify-center text-center margin-2">
+                        {text}
+                    </div>
+                    <div className="bg-white/50 text-black shadow-lg p-4 rounded-lg flex items-center justify-center text-center margin-2 margin-top-2">
+                        <img src={images[index]} alt={altTexts[index]} className="w-25 h-25 object-contain mb-4 opacity-50 mx-auto"/>
+                    </div>
+                </div>
+            ))}
+        </div>
     </>
-)
-}
+)}
 /*<div className = "bg-white w-full max-width : 700px p-6 rounded-lg shadow-lg">
             <p className="text-2xl text-center font-weight : bold">Bienvenue sur l'application de gestion des patients</p>
         </div>
