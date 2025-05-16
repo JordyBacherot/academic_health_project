@@ -1,5 +1,5 @@
 import MenuPrincipal from "../component/MenuPrincipal.tsx";
-import {useParams} from "react-router";
+import {Navigate, useLocation, useParams} from "react-router";
 import MenuPatient from "../component/MenuPatient.tsx";
 import {useEffect, useState} from "react";
 import {Patient} from "../types.tsx";
@@ -14,6 +14,12 @@ function PatientDetails() {
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isChatbotOpen, setIsChatbotOpen] = useState(false); // Modal state
+
+    const location = useLocation();
+
+    const match = location.pathname.match(
+        /^\/patients\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+    );
 
     useEffect(() => {
         const service = new ServiceDirectusAPI();
@@ -64,8 +70,14 @@ function PatientDetails() {
             <PatientContext.Provider value={patient}>
                 <div className="App">
                         <div className="patient-details">
-                                <div className="patient-name">
+                                <div className="patient-name flex items-center align-items-center">
+                                    <img
+                                        src={patient?.sex === 1 ? "/icons/user-masculin.svg" : "/icons/user-feminin.svg"}
+                                        alt="Patient Icon"
+                                        className="w-10 h-10 rounded-full"
+                                    />
                                     <h2>{patient?.firstname} {patient?.lastname}</h2>
+
                                 </div>
                                 <MenuPatient id={id}/>
                         </div>
@@ -86,7 +98,7 @@ function PatientDetails() {
                             </div>
                             <button
                                 onClick={() => setIsChatbotOpen(false)}
-                                className="absolute top-2 right-2 text-xl rounded-full"
+                                className="absolute top-2 right-2 rounded-full"
                             >
                                 {/*Caractère spécial*/}
                                 &times;
@@ -97,6 +109,7 @@ function PatientDetails() {
                 )}
             </PatientContext.Provider>
             <Background/>
+            {match ? <Navigate replace to="patientInfos" /> : null}
         </>
 
     )
@@ -104,10 +117,5 @@ function PatientDetails() {
 
 export default PatientDetails;
 
-//TODO : global presentation (picture to add)
-
-//TODO : css menu for accessing basic infos, psychological, physical, physiological datas
-
-//TODO : reponsive charts
 
 

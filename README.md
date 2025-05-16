@@ -12,6 +12,8 @@ This app empowers healthcare professionals and coaches to:
 - Communicate through a **global chat** interface between medical professionals.
 - Get support from an **AI-powered chatbot** to assist with diagnostics or personalized coaching advice.
 
+This project was developed as part of a class project in our Cognitive Sciences Master’s degree, with a focus on building a website using React.
+
 ## 🧠 Architecture Overview
 
 The application integrates seamlessly with three powerful APIs:
@@ -31,10 +33,16 @@ The application integrates seamlessly with three powerful APIs:
 
 ## ⚙️ Tech Stack
 
-- **React** – Frontend framework for building UI.
-- **Bun** – Ultra-fast JavaScript runtime, replacing Node.js.
-- **Vite** – Next-gen build tool optimized for fast development.
-- 
+- **React** – Frontend framework for building UI.  
+- **Bun** – Ultra-fast JavaScript runtime, replacing Node.js.  
+- **Vite** – Next-gen build tool optimized for fast development.  
+- **Tailwind CSS** – Utility-first CSS framework for rapidly building custom designs.  
+- **React Router** – Declarative routing for React applications.  
+- **React Big Calendar** – Powerful calendar component for managing and displaying events.  
+- **LangChain** – Framework for building applications with LLMs through composable chains.  
+- **React Hook Form** – Lightweight library for building performant and accessible forms in React.  
+- **GSAP** – High-performance animation library for creating smooth and complex UI transitions.
+  
 ## 🚀 Getting Started
 
 Make sure you have **Bun** installed:
@@ -50,7 +58,20 @@ bun run dev
 ```
 
 ## 📁 Project Structure
-
-Todo : To Complete
+```
+academic_health_project/
+├── public/               # Static files
+├── src/                  # Main source code
+│   ├── components/       # Reusable UI components
+│   ├── pages/            # Page-level components
+│   ├── services/         # API and data logic
+│   ├── assets/           # Images, icons, etc.
+│   └── ...
+├── .env                  # Environment variables
+├── vite.config.ts        # Vite configuration
+├── bun.lock              # Bun dependency lock
+├── tsconfig.json         # TypeScript config
+└── README.md             # You're reading it!
+```
 
 
