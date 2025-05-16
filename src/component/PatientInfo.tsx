@@ -142,7 +142,7 @@ function PatientInfo() {
                             <img src="/icons/icon_goal_small.png" alt="icon objectif patient"/>
                             <strong>
                                 <p>Objectifs :</p>
-                                <p>Poids idéal : ${patient.weightGoal} kg</p>
+                                <p>Poids idéal : {patient.weightGoal} kg</p>
                                 <p>IMC voulu : {translateValue(bmiTranslation, patient.bmiGoal)}</p>
                             </strong>
                         </li>
