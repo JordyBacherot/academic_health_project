@@ -33,10 +33,16 @@ The application integrates seamlessly with three powerful APIs:
 
 ## ⚙️ Tech Stack
 
-- **React** – Frontend framework for building UI.
-- **Bun** – Ultra-fast JavaScript runtime, replacing Node.js.
-- **Vite** – Next-gen build tool optimized for fast development.
-- 
+- **React** – Frontend framework for building UI.  
+- **Bun** – Ultra-fast JavaScript runtime, replacing Node.js.  
+- **Vite** – Next-gen build tool optimized for fast development.  
+- **Tailwind CSS** – Utility-first CSS framework for rapidly building custom designs.  
+- **React Router** – Declarative routing for React applications.  
+- **React Big Calendar** – Powerful calendar component for managing and displaying events.  
+- **LangChain** – Framework for building applications with LLMs through composable chains.  
+- **React Hook Form** – Lightweight library for building performant and accessible forms in React.  
+- **GSAP** – High-performance animation library for creating smooth and complex UI transitions.
+  
 ## 🚀 Getting Started
 
 Make sure you have **Bun** installed:
