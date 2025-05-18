@@ -63,7 +63,7 @@ function MenuPrincipal() {
                         isActive ? "menu-link active-link" : "menu-link"
                     }
                 >
-                    <img src="/icons/connect.svg" alt="icon globalchat" />
+                    <img src="/icons/connect_small.svg" alt="icon globalchat" />
                 </NavLink>
 
                 {
