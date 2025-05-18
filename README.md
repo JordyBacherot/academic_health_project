@@ -14,6 +14,10 @@ This app empowers healthcare professionals and coaches to:
 
 This project was developed as part of a class project in our Cognitive Sciences Master’s degree, with a focus on building a website using React.
 
+## Demonstration
+
+A video in the **"demo"** folder demonstrates the app's functionalities.
+
 ## 🧠 Architecture Overview
 
 The application integrates seamlessly with three powerful APIs:
